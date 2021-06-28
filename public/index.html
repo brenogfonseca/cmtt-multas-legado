@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!--Desativa Cache dos JavaScript React-->
+  <!-- Styles Prefeitura-->
+  <link rel="stylesheet" type="text/css" href="css/datatables.min.css" />
+  <link rel="stylesheet" href="https://cdn.anapolis.go.gov.br/css/bootstrap.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/custom.css" />
+  <!-- <link rel="stylesheet" href="css/jquery-ui.css" /> -->
+  <script>
+    // window.addEventListener("beforeunload", function (e) {
+    //   var confirmationMessage = "\o/";
+
+    //   e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+    //   return confirmationMessage;              // Gecko, WebKit, Chrome <34
+    // });
+  </script>
+
+
+  <!-- <link rel="stylesheet" href="css/font-awesome.min.css" /> -->
+  <link crossorigin="anonymous" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet" />
+  <!-- Scripts Prefeitura-->
+  <script>
+    // window.console = {};
+    // console.assert = console.clear = console.constructor = console.count = console.debug = console.dir = console.dirxml = console.group = console.groupCollapsed = console.groupEnd = console.info = console.log = console.markTimeline = console.profile = console.profileEnd = console.table = console.time = console.timeEnd = console.timeStamp = console.timeline = console.timelineEnd = console.trace = console.warn = function () { return false; };
+  </script>
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/jquery.mmenu.all.js"></script>
+  <script src="js/jquery.mask.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/owl.carousel.js"></script>
+  <script src="js/voluntariado.js"></script>
+  <title>Sistema de Vacina - Prefeitura Municipal de Anápolis</title>
+  <style>
+    .btn-1dose {
+      background-color: #007bff !important;
+      border-color: #0062cc !important;
+    }
+
+    .btn-2dose {
+      background-color: #723b91 !important;
+      border-color: #5b2f74 !important;
+    }
+
+    .btn-1block {
+      background-color: #ff8c00 !important;
+      border-color: #ff8c00 !important;
+    }
+
+    #footer {
+      background-color: #fff !important;
+    }
+
+    .pma-text-center {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      display: block !important;
+      width: calc(100vw - 50%)
+    }
+
+    .pma-align-center {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      display: block !important;
+      width: calc(100vw - 70%)
+    }
+
+    .btn-danger-img {
+      float: left;
+      border-radius: 10px;
+      color: #fff;
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+
+
+      #printable,
+      #printable * {
+        visibility: visible;
+      }
+
+      .img,
+      .pma-center * {
+        visibility: hidden !important;
+        content-visibility: hidden;
+      }
+
+      #printable {
+        position: fixed;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    .pv-btn-danger {
+
+      background-color: #AA0000 !important;
+    }
+
+    .pma-1vacina {
+      background-color: green !important;
+      color: white !important;
+      width: 100% !important;
+      height: 35px !important;
+      font-weight: bolder !important;
+    }
+
+    .pma-2vacina {
+      background-color: red !important;
+      color: white !important;
+      width: 100% !important;
+      height: 35px !important;
+      font-weight: bolder !important;
+    }
+
+    .user-inativo {
+      color: red !important;
+      text-align: left !important;
+      width: 100% !important;
+      font-weight: bolder !important;
+    }
+
+    .user-ativo {
+      color: green !important;
+      text-align: left !important;
+      width: 100% !important;
+      font-weight: bolder !important;
+    }
+
+    .pma-3vacina {
+      background-color: gray !important;
+      color: black !important;
+      width: 100% !important;
+      height: 35px !important;
+      font-weight: bolder !important;
+    }
+
+    .pull-left {
+      float: left;
+    }
+
+    .footer2 {
+      grid-area: footer;
+      text-align: center;
+      /* background: #999; */
+      height: auto;
+      width: auto;
+      padding: 0px;
+      bottom: 0;
+      font-style: oblique;
+      font-size: small;
+      overflow-x: hidden;
+    }
+
+    .pull-right {
+      float: right;
+    }
+
+    .skin-blue .sidebar-menu>li>.treeview-menu,
+    .skin-blue .sidebar-menu>li.active>a,
+    .skin-blue .sidebar-menu>li.menu-open>a {
+      background-color: #004680 !important;
+    }
+
+    a:hover {
+      text-decoration: none !important;
+      color: #CCC !important;
+    }
+
+    .sidebar,
+    .sidebar-mini {
+      content: "";
+      top: 0;
+      background: #004680 !important;
+      color: #000 !important;
+      z-index: 0 !important;
+    }
+
+    .main-sidebar {
+      padding-top: 70px !important;
+      min-height: 60% !important;
+      background-color: #004680 !important;
+    }
+
+    .pma-logo {
+      height: 70px !important;
+    }
+
+    .pma-form {
+      display: contents !important;
+    }
+
+    .pma-form legend {
+      text-align: initial !important;
+    }
+
+    @media (max-width: 767px) {
+      .main-sidebar {
+        padding-top: 140px !important;
+      }
+
+      .pma-logo {
+        height: 40px !important;
+      }
+
+      .pma-align-center {
+        width: calc(100vw - 10%)
+      }
+
+      .sidebar-toggle {
+        display: block;
+        float: left;
+        margin-right: auto;
+        margin-left: 0;
+      }
+    }
+
+    .skin-blue .wrapper,
+    .skin-blue .main-header .logo,
+    .skin-blue .main-header .navbar {
+      background-color: #004680 !important;
+    }
+
+    .MuiFormControl-fullWidth {
+      margin-top: 10px !important;
+      margin-bottom: 20px !important;
+    }
+
+    .MuiTooltip-popper {
+      font-size: large !important;
+    }
+
+    .MuiIconButton-label {
+      background-color: rgba(10, 10, 10, 0.54);
+    }
+
+    .MuiAutocomplete-clearIndicator {
+      visibility: visible !important;
+    }
+
+    .MuiInputBase-root,
+    .MuiFormLabel-root {
+      font-size: 1.2em !important;
+    }
+
+    .valid fieldset {
+      border-color: green !important;
+      border-width: 3px !important;
+    }
+
+    .noValid fieldset {
+      border-color: red !important;
+      border-width: 3px !important;
+    }
+
+    .pma-italic {
+      font-style: italic !important;
+    }
+
+    .pma-center {
+      display: block !important;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .table {
+      width: 100%;
+      margin-bottom: 1rem;
+      color: #212529;
+      border: 1px solid #dee2e6;
+    }
+
+    .MuiSvgIcon-root {
+      color: #fff;
+    }
+
+    .logoPInicial {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      display: block !important;
+    }
+
+    .MuiAppBar-colorPrimary,
+    li.user-header {
+      background-color: #004680 !important;
+    }
+
+    .Mui-selected {
+      color: #FFF !important;
+      font-weight: bolder !important;
+    }
+
+    .percentGreen {
+      color: green;
+      font-weight: bolder !important;
+    }
+
+    .percentRed {
+      color: red;
+      font-weight: bolder !important;
+    }
+
+    .title_table>th {
+      font-weight: bolder !important;
+      background-color: #004680 !important;
+      color: white !important;
+    }
+
+    /* .MuiTabs-indicator {
+      background-color: rgb(238, 255, 0) !important;
+    } */
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="js/adminlte.min.js"></script>
+  <script src="https://cdn.anapolis.go.gov.br/js/9af0f342cf.js"></script>
+
+</body>
+
+</html>

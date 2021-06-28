@@ -1,0 +1,343 @@
+body {
+  background-color: #eef;
+}
+
+#tabs {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.img-logo {
+  width: 100% !important;
+}
+
+.form-pma {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.faixa-menu {
+  width: 50%;
+  height: 10px;
+  background-color: #06a3d4;
+}
+
+.faixa-footer {
+  width: 50%;
+  height: 10px;
+  float: right;
+  margin-top: -10px;
+  background-color: #06a3d4;
+}
+
+.legend-pma {
+  background-color: #004680
+  /* linear-gradient(
+    to right,
+    rgba(1, 163, 213, 1) 0%,
+    rgba(1, 163, 213, 1) 20%,
+    rgba(0, 105, 166, 1) 79%,
+    rgba(0, 105, 166, 1) 100%
+  )  */
+  !important;
+}
+
+.campos-pma {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.jss335 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.jss334 {
+  color: #ffffff;
+  width: 100%;
+  font-size: 34px;
+  text-align: center;
+  line-height: 44px;
+  letter-spacing: 0.25px;
+}
+
+.jss337 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.jss340 {
+  color: #ffffff;
+}
+
+.jss338 {
+  color: #ffffff;
+  width: 100px;
+  border: 1px solid #ffffff;
+  height: 101px;
+  margin: 0;
+  display: flex;
+  font-size: 60px;
+  align-items: center;
+  border-radius: 4px;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.jss341 {
+  color: #ffffff;
+  width: 200px;
+  border: 1px solid #ffffff;
+  height: 101px;
+  margin: 0;
+  display: flex;
+  font-size: 60px;
+  align-items: center;
+  border-radius: 4px;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (min-width: 320px) {
+  .slide {
+    max-width: 80%;
+    height: auto;
+  }
+  .slideDiv {
+    text-align: -webkit-center;
+    margin-top: 20px;
+  }
+  .slide img {
+    width: 100%;
+    height: auto;
+  }
+  .jss336 {
+    width: 90%;
+    margin: 10px;
+    display: flex;
+    max-width: min-content;
+    border-radius: 6px;
+    flex-direction: row;
+  }
+}
+
+.ui-outputlabel {
+  font-weight: bold;
+}
+
+.ui-orderlist .ui-orderlist-list {
+  height: auto;
+}
+
+/*LAYOUT*/
+
+.ui-fluid-conteudo {
+  width: 82%;
+  margin: 0 auto;
+}
+
+.portfolio {
+  background: #fff;
+  border-radius: 4px;
+  margin-bottom: 3%;
+}
+
+.logo-portfolio {
+  max-width: 100%;
+  height: auto;
+}
+
+/*Duvidas Frequentes */
+
+.faq-header {
+  background: #006499;
+}
+
+.faq-btn-link {
+  color: #fff;
+  white-space: normal !important;
+}
+
+.faq-btn-link:hover {
+  color: #fff;
+}
+
+/* -- */
+
+.detalhes {
+  font-size: 0.9em !important;
+  text-align: justify;
+}
+
+.breadcrumb-portfolio a {
+  color: #fff;
+}
+
+.breadcrumb-portfolio li {
+  color: #fff;
+}
+
+.tabelas {
+  font-size: 1em !important;
+  line-height: 0.8em;
+}
+
+.tabela {
+  font-size: 1em !important;
+}
+
+.pesquisa-portfolio {
+  margin-bottom: 2%;
+}
+
+.btn-acessar {
+  background: #f57c00 !important;
+  border-color: #f57c00 !important;
+}
+
+.btn-cadastrar {
+  background: #2399e5 !important;
+}
+
+.btn-sejavoluntario {
+  background: #00baf2;
+  border-color: #00baf2;
+}
+
+.teste>.ui-widget-header {
+  border: 1px solid #186ba0 !important;
+  background-color: #186ba0 !important;
+  color: #fff !important;
+  background: rgba(1, 163, 213, 1) !important;
+  background: -moz-linear-gradient( left, rgba(1, 163, 213, 1) 0%, rgba(1, 163, 213, 1) 20%, rgba(0, 105, 166, 1) 79%, rgba(0, 105, 166, 1) 100%) !important;
+  background: -webkit-gradient( left top, right top, color-stop(0%, rgba(1, 163, 213, 1)), color-stop(20%, rgba(1, 163, 213, 1)), color-stop(79%, rgba(0, 105, 166, 1)), color-stop(100%, rgba(0, 105, 166, 1))) !important;
+  background: -webkit-linear-gradient( left, rgba(1, 163, 213, 1) 0%, rgba(1, 163, 213, 1) 20%, rgba(0, 105, 166, 1) 79%, rgba(0, 105, 166, 1) 100%) !important;
+  background: -o-linear-gradient( left, rgba(1, 163, 213, 1) 0%, rgba(1, 163, 213, 1) 20%, rgba(0, 105, 166, 1) 79%, rgba(0, 105, 166, 1) 100%) !important;
+  background: -ms-linear-gradient( left, rgba(1, 163, 213, 1) 0%, rgba(1, 163, 213, 1) 20%, rgba(0, 105, 166, 1) 79%, rgba(0, 105, 166, 1) 100%) !important;
+  background: linear-gradient( to right, rgba(1, 163, 213, 1) 0%, rgba(1, 163, 213, 1) 20%, rgba(0, 105, 166, 1) 79%, rgba(0, 105, 166, 1) 100%) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#01a3d5', endColorstr='#0069a6', GradientType=1) !important;
+}
+
+.slide {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.menu-bars {
+  text-rendering: optimizeLegibility !important;
+}
+
+.ui-autocomplete-input {
+  height: 3rem !important;
+}
+
+.text-middle {
+  color: #000000;
+  vertical-align: middle;
+  font-size: 1rem;
+  line-height: 3rem;
+  height: 3rem !important;
+}
+
+.img-port {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 30%;
+}
+
+.btn-pdf {
+  color: #fff !important;
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  background-image: -webkit-linear-gradient( top, #dc3545 0%, #dc3545 100%) !important;
+}
+
+.btn-print {
+  color: #fff !important;
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+  background-image: -webkit-linear-gradient( top, #007bff 0%, #007bff 100%) !important;
+}
+
+.btn-excel {
+  color: #fff !important;
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+  background-image: -webkit-linear-gradient( top, #28a745 0%, #28a745 100%) !important;
+}
+
+/* Table Base */
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.table th, .table td {
+  font-weight: normal;
+  padding: 8px 15px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: middle;
+  border-top: 1px solid #dddddd;
+}
+
+.table thead th {
+  background: #eeeeee;
+  vertical-align: bottom;
+}
+
+.table tbody>tr:nth-child(odd)>td, .table tbody>tr:nth-child(odd)>th {
+  background-color: #fafafa;
+}
+
+.table .t-small {
+  width: 5%;
+}
+
+.table .t-medium {
+  width: 15%;
+}
+
+.table .t-status {
+  font-weight: bold;
+}
+
+.table .t-active {
+  color: #46a546;
+}
+
+.table .t-inactive {
+  color: #e00300;
+}
+
+.table .t-draft {
+  color: #f89406;
+}
+
+.table .t-scheduled {
+  color: #049cdb;
+}
+
+@media (max-width: 520px) {
+  .img-port {
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .menu-bars {
+    display: none !important;
+  }
+}
