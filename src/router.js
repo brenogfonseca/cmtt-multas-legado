@@ -1,35 +1,26 @@
 import React from "react";
-import App from "./App";
-import { isAuthenticated } from "./services/dados";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Acessar from "./components/Acessar";
 import Pagina404 from "./Pagina404"
-import CMTT from './CMTT'
-const PrivateRoute = ({ component: Component, ...rest }) => (
+import ImportPenalidades from './CMTT/importPenalidades.js'
+import ImportAutuacao from './CMTT/importAutuacao.js'
+import BuscaPlaca from './CMTT/BuscaPlaca.js'
+import PrivateRoute from './services/PrivateRoute'
+import NormalRoute from './services/PrivateRoute'
 
-    <Route
-        {...rest}
-        render={
+import { roleAdm, roleUsr } from "./roles/Base";
+import RelatorioDiario from "./CMTT/RelatorioDiario";
+import Dashboard from "./components/DashBoard";
 
-            props =>
-                isAuthenticated() ? (
-                    < Component {...props} />
-
-                ) : (
-                    <Redirect
-                        to={{ pathname: "/Acessar", state: { from: props.location } }}
-                    />
-                )
-
-        }
-    />
-);
 const Routes = () => (
     <BrowserRouter>
         <Switch>
-            <Route path="/" exact={true} component={App} />
+            <Route exact path="/"><Dashboard /></Route>
             <Route path="/Acessar" component={Acessar} />
-            <Route path="/cmtt" component={CMTT} />
+            <PrivateRoute path="/buscaPlaca"><BuscaPlaca /></PrivateRoute>
+            <PrivateRoute path="/importPenalidades"><ImportPenalidades /></PrivateRoute>
+            <PrivateRoute path="/importAutuacao"><ImportAutuacao /></PrivateRoute>
+            <NormalRoute path="/RelatorioDiario"><RelatorioDiario /></NormalRoute>
             <Route path='*' component={Pagina404} />
         </Switch>
     </BrowserRouter>

@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import Footer from "./components/Footer";
-import { getUsers } from "./services/dados";
-import NavTop from "./CMTT/Navtop";
-import Sidebar from "./CMTT/Sidebar";
-
-
+import { FooterNomLogged as Footer } from "./components/Footer";
 
 class Covid19 extends Component {
     constructor(props) {
@@ -16,11 +11,6 @@ class Covid19 extends Component {
     }
 
     getEventos() {
-        getUsers().then(response2 => {
-            this.setState({
-                dadosUser: response2.data
-            })
-        });
     }
 
     componentDidMount() {
@@ -32,8 +22,6 @@ class Covid19 extends Component {
         return (
             <div className="skin-blue bg-light sidebar-mini" id="panel">
                 <div className="wrapper">
-                    <NavTop dados={this.state.dadosUser} />
-                    <Sidebar dados={this.state.dadosUser} />
                     <div className="content-wrapper">
                         <section className="content">
                             <div className="row">

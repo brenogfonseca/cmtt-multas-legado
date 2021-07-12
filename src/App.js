@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import Header from "./components/Header";
-import { FooterNomLogged } from "./components/Footer";
-import Content from "./components/Content";
 import './App.css';
 import GMaps from 'gmaps'
 
@@ -46,15 +43,14 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="conteudo" style={{ overflowX: 'hidden', }}>
-        <Header />
-        <Content />
-        <FooterNomLogged />
+
       </div>
     );
   }
 }
+
+
 
 export default App;

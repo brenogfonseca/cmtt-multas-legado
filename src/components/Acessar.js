@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TextField } from "@material-ui/core";
 import Header from "./Header";
-import Footer from "./Footer";
+import { Footer } from "./Footer";
 
 import api from "./../services/api";
 import { TOKEN_KEY } from "./../services/auth";
@@ -57,7 +57,7 @@ class Acesso extends Component {
             <fieldset className="card">
               <legend className="card-header text-left legend-pma faq-btn-link">
                 Informações importantes
-            </legend>
+              </legend>
               {/* <div className="text-center col-lg-4 offset-md-4 card-body"> */}
               <div className="col-md-12 campos-pma card-body logoPInicial">
                 <div
@@ -104,8 +104,8 @@ class Acesso extends Component {
                   type="submit"
                 >
                   <span className="fa fa-paper-plane" />
-                &nbsp; Acessar
-              </button>
+                  &nbsp; Acessar
+                </button>
               </div>
             </fieldset>
           </form>

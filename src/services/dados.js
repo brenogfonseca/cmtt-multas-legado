@@ -1,9 +1,9 @@
 import { TOKEN_KEY } from "./../services/auth";
-import { apiBusca, apiBairros } from "./../services/api";
+import { apiBusca } from "./../services/api";
 
 export const token = localStorage.getItem(TOKEN_KEY);
 
-function parseJwt(token) {
+export function parseJwt(token) {
   if (!token) {
     return;
   }
@@ -14,38 +14,13 @@ function parseJwt(token) {
 }
 //REGRAS GET
 
-export const readfileautomatically = async () => {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://localhost:3000/penalidade.txt', true);
-  xhr.responseType = 'text';
-  xhr.overrideMimeType("application/json");
-
-  var texto = '';
-
-  xhr.onload = function () {
-    if (xhr.readyState === xhr.DONE) {
-      if (xhr.status === 200) {
-        texto = xhr.response;
-        var linhas = texto.split(/\n/);
-        for (var linha in linhas) {
-          var envio = linhas[linha]
-          // console.log(envio)
-        }
-      }
-    }
-  };
-  // console.log(xhr)
-  xhr.send();
-  return xhr
-}
-
-export const getUsers = async () => {
+export const getRelatorioData = async (data) => {
   const config = {
     headers: { 'Authorization': token }
   }
   return new Promise(resolve =>
     setTimeout(() => {
-      resolve(apiBusca.get("/cadastros/getUsers", config));
+      resolve(apiBusca.get("/Relatorios/" + data, config));
     }, 200)
   );
 };

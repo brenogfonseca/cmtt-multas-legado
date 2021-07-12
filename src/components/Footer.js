@@ -1,71 +1,61 @@
-import React, { Component } from "react";
+import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import './dashboard.css'
 
-export default class Footer extends Component {
-  render() {
-    var data = new Date();
-    var ano = data.getFullYear();
-    return (
-      <div className='footer2 mt-5'>
-        <footer className="footer-pma footer2 col-md-12 mt-1" style={{
-          paddingRight: '0px', paddingLeft: '0px'
-        }} id="footer" >
-          <div className="copy">
-            <div className="faixa-footer" />
-            <div className="text-center">
-              <div className="row">
-                <div className='col-sm-12 col-md-4 border-right-col text-left'>
-                  <img className='img-responsive' alt='logosocial' src='https://cdn.anapolis.go.gov.br/img/logos/sem_fundo/brancas/cmtt.png' style={{ margin: '15px', width: '80%' }} />
-                </div>
-                <div className='col-md-4'>
-                  <p className='text-center col-md-12' style={{ fontSize: '13px' }}>© Copyright {ano} | #IMUNIZAANÁPOLIS - Todos os Direitos Reservados
-                    <br /><span style={{ fontStyle: 'oblique' }}>Secretaria de Comunicação, Eventos e Modernização</span>
-                    <br /><span style={{ fontStyle: 'oblique' }}>Diretoria de Sistemas</span></p>
-                </div>
-                <div className='col-sm-12 col-md-4 text-right' style={{ marginLeft: '-10px', color: 'white' }}>
-                  <b>Endereço</b>: R. Prof. Roberto Mange, 152
-                  <br />Centro - Anápolis - GO
-                  <br />Fone: (62)3902-2560
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </div>
-    );
-  }
+
+export function FooterNomLogged(props) {
+  return (
+    <div >
+      <CssBaseline />
+      <footer className={props.footer}>
+        <Container maxWidth="sm">
+          <Typography variant="body1">My sticky footer can be found here.</Typography>
+        </Container>
+      </footer>
+    </div>
+  );
 }
 
-export class FooterNomLogged extends Component {
-  render() {
-    var data = new Date();
-    var ano = data.getFullYear();
-    return (
-      <div className='footer mt-5'>
-        <footer className="footer-pma footer2 col-md-12 mt-1" style={{
-          paddingRight: '0px', paddingLeft: '0px'
-        }} id="footer" >
-          <div className="copy">
-            <div className="faixa-footer" />
-            <div className="text-center">
-              <div className="row">
-                <div className='col-sm-12 col-md-4 border-right-col text-left'>
-                  <img className='img-responsive' alt='logosocial' src='https://cdn.anapolis.go.gov.br/img/logos/sem_fundo/brancas/cmtt.png' style={{ margin: '15px', width: '80%' }} />
-                </div>
-                <div className='col-md-4'>
-                  <p className='text-center col-md-12' style={{ fontSize: '13px' }}>© Copyright {ano} | CMTT - Todos os Direitos Reservados
-                    <br /><span style={{ fontStyle: 'oblique' }}>Secretaria de Comunicação, Eventos e Modernização</span>
-                    <br /><span style={{ fontStyle: 'oblique' }}>Diretoria de Sistemas</span></p>
-                </div>
-                <div className='col-sm-12 col-md-4 text-right' style={{ marginLeft: '-10px', color: 'white' }}>
-                  <b>Endereço</b>: R. Prof. Roberto Mange, 152
-                  <br />Centro - Anápolis - GO
-                  <br />Fone: (62)3902-2560
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
+
+export function Footer(props) {
+  var data = new Date();
+  var ano = data.getFullYear();
+  return (
+    <footer className={props.css}>
+      <div className="dashboard-footer"  >
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={4} >
+            <img alt='logosocial' src='https://cdn.anapolis.go.gov.br/img/logos/sem_fundo/brancas/cmtt.png' style={{ margin: '15px', width: '80%' }} />
+          </Grid>
+          <Grid item xs={12} sm={5} align="center" >
+            {/* <ThemeProvider theme={theme}> */}
+            <Typography variant="subtitle1"  >
+              © Copyright {ano} | #IMUNIZAANÁPOLIS - Todos os Direitos Reservados
+            </Typography>
+            <Typography variant="subtitle1" color="inherit">
+              Secretaria de Comunicação, Eventos e Modernização
+            </Typography>
+            <Typography variant="subtitle1" color="inherit">
+              Diretoria de Sistemas
+            </Typography>
+            {/* </ThemeProvider> */}
+          </Grid>
+          <Grid item xs={12} sm={3} align="center" >
+            <Typography variant="subtitle1" color="inherit">
+              <b>Endereço</b>: R. Prof. Roberto Mange, 152
+            </Typography>
+            <Typography variant="subtitle1" color="inherit">
+              Centro - Anápolis - GO
+            </Typography>
+            <Typography variant="subtitle1" color="inherit">
+              Fone: (62)3902-2560
+            </Typography>
+          </Grid>
+        </Grid>
       </div>
-    );
-  }
+    </footer>
+  );
 }
