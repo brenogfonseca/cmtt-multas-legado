@@ -3,9 +3,13 @@ import moment from "moment";
 import { connect } from 'react-redux';
 import * as actions from '../actions'
 import jsPDF from 'jspdf'
+import 'jspdf-autotable'
 import { base64Img } from "../components/logo";
 import { DataGrid } from "@material-ui/data-grid";
 /* eslint eqeqeq: "off", "no-unused-vars": "off", curly: "error" */
+
+
+
 function PrintDocument(props) {
     const doc = new jsPDF()
     props.map(prop => {
@@ -27,6 +31,7 @@ function PrintDocument(props) {
         styles: { fontSize: 9 },
         headStyles: { fillColor: [15, 76, 129] }, // European countries centered
         body: props,
+        margin: { top: 30 },
         columns: [
             { header: 'Placa', dataKey: 'placa' },
             { header: 'Auto de Infração', dataKey: 'auto' },

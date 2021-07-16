@@ -32,7 +32,7 @@ export function apareceAlertProtocolo(protocolo) {
 }
 
 export function apareceAlert(props, cpfedit) {
-    var cpfedit = window.btoa(cpfedit)
+    cpfedit = window.btoa(cpfedit)
     var caminho = "/CadastroCpf?" + cpfedit
     return (window.location = caminho);
 }

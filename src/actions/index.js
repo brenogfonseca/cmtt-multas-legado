@@ -25,9 +25,9 @@ export const getUser = () => {
 }
 
 export const getRelatorioData = () => {
-    //var data = new Date()
-    var date = '2010-07-24'
-    //var date = moment(data).format('YYYY-MM-DD')
+    var data = new Date()
+    // var date = '2010-07-24'
+    var date = moment(data).format('YYYY-MM-DD')
     return function (dispatch) {
         axios.get(`${apiURL}/Relatorios/` + date, getHeaders())
             .then((response) => {

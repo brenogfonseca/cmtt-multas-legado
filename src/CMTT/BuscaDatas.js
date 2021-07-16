@@ -3,18 +3,27 @@ import React, { Component } from "react";
 import { Button } from "semantic-ui-react";
 import InputMask from 'react-input-mask';
 
-import { getPlacasAutuacao, getPlacasPenalidades } from "../services/dados";
+import { getPlacasDatas } from "../services/dados";
 import moment from "moment";
 //import * as fs from 'fs/promises';
 /* eslint eqeqeq: "off", "no-unused-vars": "off", curly: "error" */
 
+function convertDateUS(date) {
+    if (date == '' || date == undefined || date == null) {
+        return null
+    }
+    var dt_postagem_ano = date.substr(6, 4)
+    var dt_postagem_mes = date.substr(3, 2)
+    var dt_postagem_dia = date.substr(0, 2)
+    return dt_postagem_ano + "-" + dt_postagem_mes + "-" + dt_postagem_dia
+}
 
 function TableFaixaEtaria(props) {
     if (props == '' || props == undefined || props == null) {
         return null
     }
-
     var dados = props.dados
+    console.log(dados)
     return dados.map(function (item, i) {
         var tipo_notificacao
         item.dt_infracao = moment(item.dt_infracao).format('DD/MM/YYYY')
@@ -35,7 +44,7 @@ function TableFaixaEtaria(props) {
                 <td>{item.cod_infracao}</td>
                 <td>{item.autuador}</td>
                 <td>{item.venc_notificacao}</td>
-                <td hidden={props.tipo === 'autuacao'}>{item.valor_infracao}</td>
+                <td>{item.valor_infracao}</td>
             </tr>
         )
     })
@@ -53,42 +62,30 @@ class Content extends Component {
                 status: '',
                 message: ''
             },
-            placa: '',
-            placa2: '',
-            open: true,
-            tipoBusca: ''
+            data: '',
+            data2: '',
+            open: true
         };
         this.getEventos = this.getEventos.bind(this);
-        this.SendAutuacao = this.SendAutuacao.bind(this)
-        this.SendPenalidade = this.SendPenalidade.bind(this)
+        this.SendPesquisaData = this.SendPesquisaData.bind(this)
 
     }
 
     async getEventos() {
     }
 
-    SendAutuacao(e) {
+    SendPesquisaData(e) {
         e.preventDefault();
-        var placa = this.state.placa
+        var date = this.state.data
+        var date2 = this.state.data2
+        var data = convertDateUS(date)
+        var data2 = convertDateUS(date2)
         this.setState({ open: false })
-        var teste = placa.replace('-', '')
-        var teste2 = teste.toUpperCase()
-        getPlacasAutuacao(teste2).then(response => {
-            this.setState({ linhas: response.data, tipoBusca: 'autuacao' })
+        getPlacasDatas(data, data2).then(response => {
+            this.setState({ linhas: response.data })
         })
     }
 
-    SendPenalidade(e) {
-        e.preventDefault();
-        var placa = this.state.placa2
-        this.setState({ open: false })
-        var teste = placa.replace('-', '')
-        var teste2 = teste.toUpperCase()
-
-        getPlacasPenalidades(teste2).then(response => {
-            this.setState({ linhas: response.data, tipoBusca: 'penalidade' })
-        })
-    }
 
     componentDidMount() {
         this.getEventos();
@@ -103,47 +100,41 @@ class Content extends Component {
                     alignItems="center"
                 >
                     <div>
+                        <h2 className='pma-center'>Busca Por Datas</h2>
+                        <form id="wizard" onSubmit={this.SendPesquisaData}>
+                            <Grid container spacing={3}>
+                                <Grid item xs={6}>
+                                    <TextField style={{ display: 'none' }} />
+                                    <div className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl">
+                                        <InputMask
+                                            placeholder='Data Inicio'
+                                            className='MuiInputBase-input MuiInput-input'
+                                            required
+                                            value={this.state.data}
+                                            onChange={e => this.setState({ data: e.target.value })}
+                                            mask="99/99/9999"
+                                        />
+                                    </div>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField style={{ display: 'none' }} />
+                                    <div className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl">
+                                        <InputMask
+                                            placeholder='Data Final'
+                                            className='MuiInputBase-input MuiInput-input'
+                                            required
+                                            value={this.state.data2}
+                                            onChange={e => this.setState({ data2: e.target.value })}
+                                            mask="99/99/9999"
+                                        />
+                                    </div>
+                                </Grid>
 
-                        <Grid container spacing={3}>
-                            <Grid item xs={12} sm={6} align='center'>
-                                <h2 className='pma-center'>Busca Autuação</h2>
-                                <form id="wizard" onSubmit={this.SendAutuacao}>
-                                    <TextField style={{ display: 'none' }} />
-                                    <div className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl">
-                                        <InputMask
-                                            placeholder='Placa'
-                                            className='MuiInputBase-input MuiInput-input'
-                                            required
-                                            value={this.state.placa}
-                                            onChange={e => this.setState({ placa: e.target.value })}
-                                            mask='aaa-9*99'
-                                        />
-                                    </div>
-                                    <Button className='btn btn-cmtt pma-center' style={{ marginTop: '15px' }} >
-                                        Buscar Autuação Placa
-                                    </Button>
-                                </form>
                             </Grid>
-                            <Grid item xs={12} sm={6} align='center'>
-                                <h2 className='pma-center'>Busca Penalidade</h2>
-                                <form id="wizard" onSubmit={this.SendPenalidade}>
-                                    <TextField style={{ display: 'none' }} />
-                                    <div className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl">
-                                        <InputMask
-                                            placeholder='Placa'
-                                            className='MuiInputBase-input MuiInput-input'
-                                            required
-                                            value={this.state.placa2}
-                                            onChange={e => this.setState({ placa2: e.target.value })}
-                                            mask='aaa-9*99'
-                                        />
-                                    </div>
-                                    <Button className='btn btn-cmtt pma-center' style={{ marginTop: '15px' }}  >
-                                        Buscar Penalidade Placa
-                                    </Button>
-                                </form>
-                            </Grid>
-                        </Grid>
+                            <Button className='btn btn-cmtt pma-center' style={{ marginTop: '15px', width: '100%' }} >
+                                Buscar Datas
+                            </Button>
+                        </form>
                     </div>
                 </Grid>
                 <br />
@@ -159,12 +150,12 @@ class Content extends Component {
                                 <th>Cod. Infração</th>
                                 <th>Autuador</th>
                                 <th>Venc. Notificação</th>
-                                <th hidden={this.state.tipoBusca === 'autuacao'}>Valor Infração</th>
+                                <th>Valor Infração</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            <TableFaixaEtaria tipo={this.state.tipoBusca} dados={this.state.linhas} />
+                            <TableFaixaEtaria dados={this.state.linhas} />
                         </tbody>
                     </table>
                 </div>

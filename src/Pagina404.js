@@ -30,13 +30,12 @@ class Covid19 extends Component {
                                         <div className="box-header with-border">
                                             <h3 className="box-title">Ooops Pagina não encontrada</h3>
                                         </div>
-                                        <img alt='404' className="" width="100%" src="https://cdn.anapolis.go.gov.br/img/404.svg" />
+                                        <img alt='404' className="" width="50%" src="https://cdn.anapolis.go.gov.br/img/404.svg" />
                                     </div>
                                 </div >
                             </div>
                         </section>
                     </div>
-                    <Footer />
                 </div>
             </div>
         );

@@ -6,76 +6,90 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import { useHistory } from 'react-router-dom';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import BallotIcon from '@material-ui/icons/Ballot';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import PersonIcon from '@material-ui/icons/Person';
+import { isAuthenticated } from '../services/dados';
+import { logout } from '../services/auth';
 
 
 export function MainListItems() {
-  const history = useHistory()
   return (
     <div>
-      <ListItem button onClick={() => history.push('/')} >
+      <ListItem button onClick={() => window.location = ('/')} >
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Início" />
       </ListItem>
-      <ListItem button onClick={() => history.push('/RelatorioDiario')}>
+      <ListItem button onClick={() => window.location = ('/RelatorioDiario')}>
         <ListItemIcon>
           <ReorderIcon />
         </ListItemIcon>
         <ListItemText primary="Relatório Diário" />
       </ListItem>
-      <ListItem button onClick={() => history.push('/importPenalidades')} >
+      <ListItem button onClick={() => window.location = ('/importPenalidades')} >
         <ListItemIcon>
           <BallotIcon />
         </ListItemIcon>
         <ListItemText primary="Importar Penalidades" />
       </ListItem>
-      <ListItem button onClick={() => history.push('/importAutuacao')} >
+      <ListItem button onClick={() => window.location = ('/importAutuacao')} >
         <ListItemIcon>
           <BallotIcon />
         </ListItemIcon>
         <ListItemText primary="Importar Autuações" />
       </ListItem>
-      <ListItem button onClick={() => history.push('/importAutuacoes')} >
+      <ListItem button onClick={() => window.location = ('/BuscaDatas')} >
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
-        <ListItemText primary="Table" />
+        <ListItemText primary="Buscar por Datas" />
       </ListItem>
-      <ListItem button>
+      <ListItem button onClick={() => window.location = ('/BuscaPlaca')} >
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Buscar por Placa" />
+      </ListItem>
+      <ListItem button onClick={() => window.location = ('/Logs')} >
         <ListItemIcon>
           <LayersIcon />
         </ListItemIcon>
-        <ListItemText primary="Integrations" />
+        <ListItemText primary="LOGS" />
       </ListItem>
     </div>
   )
 };
 
-export const secondaryListItems = (
-  <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Current month" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItem>
-  </div>
-);
+export function SecondaryListItems() {
+  var logged
+  console.log(isAuthenticated())
+  if (isAuthenticated() === true) {
+    logged = <div>
+      <ListItem button onClick={() => logout()} >
+        <ListItemIcon>
+          <PersonIcon />
+        </ListItemIcon>
+        <ListItemText primary="Sair" />
+      </ListItem>
+    </div >
+  } else {
+    logged = <div>
+      <ListItem button onClick={() => window.location = "/Acessar"} >
+        <ListItemIcon>
+          <VpnKeyIcon />
+        </ListItemIcon>
+        <ListItemText primary="Acessar" />
+      </ListItem>
+    </div >
+  }
+  return (
+    <div>
+      <ListSubheader inset>Acesso Restrito</ListSubheader>
+      {logged}
+    </div >
+  )
+};

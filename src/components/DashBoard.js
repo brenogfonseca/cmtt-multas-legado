@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { MainListItems } from './listItems';
+import { MainListItems, SecondaryListItems } from './listItems';
 import { Footer } from './Footer';
 
 const drawerWidth = 240;
@@ -115,7 +115,7 @@ export default function Dashboard({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
@@ -134,6 +134,7 @@ export default function Dashboard({ children }) {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Sistema
           </Typography>
+          {/* {Andre} */}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -153,7 +154,7 @@ export default function Dashboard({ children }) {
           <MainListItems />
         </List>
         <Divider />
-        {/* <List>{secondaryListItems}</List> */}
+        <SecondaryListItems />
       </Drawer>
       <main className={classes.main}>
         <div className={classes.appBarSpacer} />

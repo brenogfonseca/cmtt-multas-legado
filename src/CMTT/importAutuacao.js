@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import moment from "moment";
 import { apiBusca } from "../services/api";
 import { Toast, apareceAlert } from "../components/Alert"
+import { PrintDocumentImport } from "../services/dados";
+
 //import * as fs from 'fs/promises';
 /* eslint eqeqeq: "off", "no-unused-vars": "off", curly: "error" */
 
@@ -209,9 +211,11 @@ class Content extends Component {
     return (
       <div>
         <h2 className='pma-center'>Importador Autuação</h2>
+        <button className='btn btn-pdf' onClick={() => PrintDocumentImport(this.state.linhas)}>PDF</button>
+        <p />
         <div >
           <input type="file" onChange={(e) => this.showFile(e)} />
-          <br />
+          <p />
           <table id="table" className="data-table-wrapper form-center table table-bordered display table-action wrap dataTable no-footer" style={{ width: 100 + "%" }}
             refs="main">
             <thead>
@@ -236,7 +240,7 @@ class Content extends Component {
             </tbody>
           </table>
           <form id="wizard" onSubmit={this.SendForm}>
-            <button className='btn btn-excel pma-center' style={{ marginLeft: 10 + 'px' }}                >
+            <button className='btn btn-excel pma-center' style={{ marginLeft: 10 + 'px' }}>
               Cadastrar
             </button>
           </form>

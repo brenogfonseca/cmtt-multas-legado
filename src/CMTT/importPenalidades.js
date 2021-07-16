@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import { apiBusca } from "../services/api";
 import { Toast, apareceAlert } from "../components/Alert"
-//import * as fs from 'fs/promises';
+import { PrintDocumentImport } from "../services/dados";
 /* eslint eqeqeq: "off", "no-unused-vars": "off", curly: "error" */
 
 function convertDate(date) {
@@ -213,12 +213,15 @@ class Content extends Component {
     this.getEventos();
   }
   render() {
+    console.log(this.state.linhas)
     return (
       <div>
-        <h2 className='pma-center'>Importador Autuação</h2>
+        <h2 className='pma-center'>Importador Penalidades</h2>
+        <button className='btn btn-pdf' onClick={() => PrintDocumentImport(this.state.linhas)}>PDF</button>
+        <p />
         <div >
           <input type="file" onChange={(e) => this.showFile(e)} />
-          <br />
+          <p />
           <table id="table" className="data-table-wrapper form-center table table-bordered display table-action wrap dataTable no-footer" style={{ width: 100 + "%" }}
             refs="main">
             <thead>

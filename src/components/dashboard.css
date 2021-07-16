@@ -3,3 +3,8 @@
   color: white;
   overflow: hidden;
 }
+
+.swal2-container {
+  z-index: 100000000 !important;
+}
+
