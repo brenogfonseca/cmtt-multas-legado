@@ -81,39 +81,23 @@ class Content extends Component {
                 <Grid item xs={12} container>
                     <Grid container spacing={3}>
                         <Grid item xs={12} sm={6} align='center'>
-                            <a href="/BuscaPlaca">
-                                <img
-                                    className="pma-itens img-responsive"
-                                    alt="decretos"
-                                    src={cdn + "/img/cmtt/cmtt.png"}
-                                />
+                            <a target='_blank' href="./docs/FORMULÁRIO - REQUERIMENTOS DIVERSOS - CMTT.pdf">
+                                <h1>REQUERIMENTOS DIVERSOS</h1>
                             </a>
                         </Grid>
                         <Grid item xs={12} sm={6} align='center'>
-                            <a href="/Formularios">
-                                <img
-                                    className="pma-itens img-responsive"
-                                    alt="decretos"
-                                    src={cdn + "/img/cmtt/formularios.png"}
-                                />
+                            <a target='_blank' href="./docs/FORMULÁRIO - IDENTIFICAÇÃO DE CONDUTOR INFRATOR - CMTT.pdf">
+                                <h1>IDENTIFICAÇÃO DE CONDUTOR INFRATOR</h1>
                             </a>
                         </Grid>
                         <Grid item xs={12} sm={6} align='center'>
-                            <a href="/RelatorioDiario">
-                                <img
-                                    className="pma-itens img-responsive"
-                                    alt="decretos"
-                                    src={cdn + "/img/cmtt/relatorio.png"}
-                                />
+                            <a target='_blank' href="./docs/FORMULÁRIO - DEFESA PRÉVIA OU RECURSO - CMTT.pdf">
+                                <h1>DEFESA PRÉVIA OU RECURSO</h1>
                             </a>
                         </Grid>
                         <Grid item xs={12} sm={6} align='center'>
-                            <a rel="noreferrer" target='_blank' href="http://www.anapolis.go.gov.br/transito/">
-                                <img
-                                    className="pma-itens img-responsive"
-                                    alt="decretos"
-                                    src={cdn + "/img/cmtt/radares.png"}
-                                />
+                            <a target='_blank' href="./docs/FORMULÁRIO - REQUERIMENTO DE EFEITO SUSPENSIVO - CMTT.pdf">
+                                <h1> REQUERIMENTO DE EFEITO SUSPENSIVO</h1>
                             </a>
                         </Grid>
                     </Grid>

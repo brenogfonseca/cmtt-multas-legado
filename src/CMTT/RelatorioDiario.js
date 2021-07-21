@@ -12,7 +12,7 @@ import { DataGrid } from "@material-ui/data-grid";
 
 function PrintDocument(props) {
     const doc = new jsPDF()
-    props.map(prop => {
+    return props.map(prop => {
         prop.dt_infracao = moment(prop.dt_infracao).format('DD/MM/YYYY')
         prop.venc_notificacao = moment(prop.venc_notificacao).format('DD/MM/YYYY')
         if (prop.tipo_notificacao === 2) { prop.tipo_notificacao = '2 - Penalidade' }

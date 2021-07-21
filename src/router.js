@@ -10,6 +10,7 @@ import PrivateRoute from './services/PrivateRoute'
 import NormalRoute from './services/NormalRoute'
 import Logs from './CMTT/Logs'
 import Inicial from './CMTT/Inicial'
+import Formularios from './CMTT/Formularios'
 
 // import { roleAdm, roleUsr } from "./roles/Base";
 import RelatorioDiario from "./CMTT/RelatorioDiario";
@@ -26,6 +27,7 @@ const Routes = () => (
             <PrivateRoute path="/importAutuacao"><ImportAutuacao /></PrivateRoute>
             <PrivateRoute path="/logs"><Logs /></PrivateRoute>
             <NormalRoute path="/RelatorioDiario"><RelatorioDiario /></NormalRoute>
+            <NormalRoute path="/Formularios"><Formularios /></NormalRoute>
             <Route path='*' component={Pagina404} />
         </Switch>
     </BrowserRouter>

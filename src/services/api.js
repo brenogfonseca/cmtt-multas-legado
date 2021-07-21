@@ -1,8 +1,8 @@
 import axios from "axios";
 import { getToken } from "./auth";
-//export var apiURL = "https://formsocialapi.anapolis.go.gov.br/vacinaApi";
+export var apiURL = "https://api.anapolis.go.gov.br/cmtt";
 var apiURLBairros = "https://api.anapolis.go.gov.br/formSocialApi";
-export var apiURL = "http://localhost:3003";
+//export var apiURL = "http://localhost:3003";
 export var cdnURL = "https://cdn.anapolis.go.gov.br/img/";
 
 

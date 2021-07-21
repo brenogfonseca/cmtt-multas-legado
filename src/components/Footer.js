@@ -1,15 +1,13 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import './dashboard.css'
-
 
 export function Footer(props) {
   var data = new Date();
   var ano = data.getFullYear();
   return (
     <footer className={props.css} >
-      <div className="dashboard-footer" style={{ backgroundImage: 'url("https://novo.anapolis.go.gov.br/wp-content/themes/prefeitura-anapolis/assets/images//monumentos-anapolis.png")' }} >
+      <div className="dashboard-footer" style={{ backgroundSize: 'contain', backgroundImage: 'url("https://novo.anapolis.go.gov.br/wp-content/themes/prefeitura-anapolis/assets/images//monumentos-anapolis.png")' }} >
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} >
             <img alt='logosocial' src='https://cdn.anapolis.go.gov.br/img/logos/sem_fundo/brancas/cmtt.png' style={{ margin: '15px', width: '80%' }} />

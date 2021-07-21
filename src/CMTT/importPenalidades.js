@@ -150,7 +150,6 @@ class Content extends Component {
         // textLinhas.replace(, '')
         return teste
       })
-      console.log(arrayLinhas[1])
       this.setState({ linhas: arrayLinhas })
       // alert(textLinhas[0])
     };
@@ -161,7 +160,6 @@ class Content extends Component {
     event.preventDefault()
     const { linhas } = this.state
     var raw = { linhas }
-    console.log(raw)
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     // myHeaders.append("Authorization", token)
@@ -213,7 +211,7 @@ class Content extends Component {
     this.getEventos();
   }
   render() {
-    console.log(this.state.linhas)
+
     return (
       <div>
         <h2 className='pma-center'>Importador Penalidades</h2>

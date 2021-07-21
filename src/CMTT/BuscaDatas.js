@@ -23,7 +23,6 @@ function TableFaixaEtaria(props) {
         return null
     }
     var dados = props.dados
-    console.log(dados)
     return dados.map(function (item, i) {
         var tipo_notificacao
         item.dt_infracao = moment(item.dt_infracao).format('DD/MM/YYYY')

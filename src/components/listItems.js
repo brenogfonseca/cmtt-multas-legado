@@ -66,7 +66,6 @@ export function MainListItems() {
 
 export function SecondaryListItems() {
   var logged
-  console.log(isAuthenticated())
   if (isAuthenticated() === true) {
     logged = <div>
       <ListItem button onClick={() => logout()} >
