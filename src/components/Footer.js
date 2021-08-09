@@ -18,10 +18,10 @@ export function Footer(props) {
               © Copyright {ano} | #CMTT - Todos os Direitos Reservados
             </Typography>
             <Typography variant="subtitle1" color="inherit">
-              Secretaria de Comunicação, Eventos e Modernização
+              Assessoria de Inovação
             </Typography>
             <Typography variant="subtitle1" color="inherit">
-              Acessoria de Inovação
+              Secretaria de Comunicação, Eventos e Modernização
             </Typography>
             {/* </ThemeProvider> */}
           </Grid>

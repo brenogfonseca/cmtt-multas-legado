@@ -106,7 +106,7 @@ class Content extends Component {
 
                         <Grid container spacing={3}>
                             <Grid item xs={12} sm={6} align='center'>
-                                <h2 className='pma-center'>Busca Autuação</h2>
+                                <h2 className='pma-center'>Notificação de Autuação</h2>
                                 <form id="wizard" onSubmit={this.SendAutuacao}>
                                     <TextField style={{ display: 'none' }} />
                                     <div className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl">
@@ -120,12 +120,12 @@ class Content extends Component {
                                         />
                                     </div>
                                     <Button className='btn btn-cmtt pma-center' style={{ marginTop: '15px' }} >
-                                        Buscar Autuação Placa
+                                        Consultar Placa
                                     </Button>
                                 </form>
                             </Grid>
                             <Grid item xs={12} sm={6} align='center'>
-                                <h2 className='pma-center'>Busca Penalidade</h2>
+                                <h2 className='pma-center'>Notificação de Penalidade</h2>
                                 <form id="wizard" onSubmit={this.SendPenalidade}>
                                     <TextField style={{ display: 'none' }} />
                                     <div className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl">
@@ -139,7 +139,7 @@ class Content extends Component {
                                         />
                                     </div>
                                     <Button className='btn btn-cmtt pma-center' style={{ marginTop: '15px' }}  >
-                                        Buscar Penalidade Placa
+                                        Consultar Placa
                                     </Button>
                                 </form>
                             </Grid>
