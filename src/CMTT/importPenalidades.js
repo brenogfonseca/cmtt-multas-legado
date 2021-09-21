@@ -33,15 +33,17 @@ function TableFaixaEtaria(props) {
   }
   var dados = props.dados
 
-
   return dados.map(function (item, i) {
+    var tipo_notificacao
+    if (item.tipo_notif == 2) { tipo_notificacao = '2 - Penalidade' }
+    else if (item.tipo_notif == 1) { tipo_notificacao = '1 - Penalidade' }
     return (
       <tr key={i}>
         <td>{item.tipo}</td>
         <td>{item.sequencial}</td>
         <td>{item.placa}</td>
         <td>{item.auto}</td>
-        <td>{item.tipo_notif}</td>
+        <td>{tipo_notificacao}</td>
         <td>{item.motivo}</td>
         <td>{item.dt_postagem}</td>
         <td>{item.cod_infracao}</td>
