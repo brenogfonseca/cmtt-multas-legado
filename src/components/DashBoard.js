@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { MainListItems, SecondaryListItems } from './listItems';
+import SecondaryListItems, { MainListItems } from './listItems';
 import { Footer } from './Footer';
 
 const drawerWidth = 240;
@@ -116,7 +116,6 @@ export default function Dashboard({ children }) {
     setOpen(false);
   };
   // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -132,7 +131,7 @@ export default function Dashboard({ children }) {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Sistema
+            CMTT
           </Typography>
           {/* {Andre} */}
         </Toolbar>

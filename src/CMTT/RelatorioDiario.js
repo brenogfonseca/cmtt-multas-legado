@@ -47,12 +47,6 @@ function PrintDocument(props) {
 }
 
 const colunas = [
-    // { field: 'seq', headerName: 'Seq.', width: 105 },
-    // {
-    //     field: 'tipo',
-    //     headerName: 'Tipo',
-    //     width: 120,
-    // },
     {
         field: 'placa',
         headerName: 'Placa',
@@ -60,13 +54,13 @@ const colunas = [
     },
     {
         field: 'auto',
-        headerName: 'Auto de Infração',
+        headerName: 'Auto',
         width: 130,
     },
     {
         field: 'tipo_notificacao',
-        headerName: 'Tipo de Infração',
-        width: 130,
+        headerName: 'Notificação',
+        width: 170,
         renderCell: (params) => {
             if (params.row.tipo_notificacao == 2) { return '2- Penalidade' }
             else if (params.row.tipo_notificacao == 1) { return '1 - Autuação' }
@@ -74,23 +68,23 @@ const colunas = [
     },
     {
         field: 'dt_infracao',
-        headerName: 'Dt. Infração',
-        width: 170,
+        headerName: 'Data',
+        width: 130,
         renderCell: (params) => `${moment(params.getValue(params.id, 'dt_infracao')).format('DD/MM/YYYY')}`,
     },
     {
         field: 'cod_infracao',
-        headerName: 'Cod. Infração',
+        headerName: 'Infração',
         width: 150,
     },
     {
         field: 'autuador',
-        headerName: 'Cod. Autuador',
+        headerName: 'Autuador',
         width: 175,
     },
     {
         field: 'venc_notificacao',
-        headerName: 'Dt.Vencimento',
+        headerName: 'Vencimento',
         width: 175,
         renderCell: (params) => `${moment(params.getValue(params.id, 'venc_notificacao')).format('DD/MM/YYYY')}`,
     },

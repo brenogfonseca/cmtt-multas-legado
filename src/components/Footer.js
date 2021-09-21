@@ -7,7 +7,7 @@ export function Footer(props) {
   var ano = data.getFullYear();
   return (
     <footer className={props.css} >
-      <div className="dashboard-footer" style={{ backgroundSize: 'contain', backgroundImage: 'url("https://novo.anapolis.go.gov.br/wp-content/themes/prefeitura-anapolis/assets/images//monumentos-anapolis.png")' }} >
+      <div className="dashboard-footer" style={{ backgroundSize: 'contain', backgroundImage: 'url("https://www.anapolis.go.gov.br/wp-content/themes/prefeitura-anapolis/assets/images//monumentos-anapolis.png")' }} >
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} >
             <img alt='logosocial' src='https://cdn.anapolis.go.gov.br/img/logos/sem_fundo/brancas/cmtt.png' style={{ margin: '15px', width: '80%' }} />
@@ -33,7 +33,7 @@ export function Footer(props) {
               Vila Esperança - Anápolis - GO
             </Typography>
             <Typography variant="subtitle1" color="inherit">
-              Fone: (62)3902-2822 - (62)3902-2823 - (62)3902-2825 - (62)3902-2699
+              Fone: (62)3902-2822 - (62)3902-2823<br />(62)3902-2825
             </Typography>
           </Grid>
         </Grid>

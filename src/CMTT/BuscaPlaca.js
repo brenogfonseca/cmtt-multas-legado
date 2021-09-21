@@ -167,6 +167,16 @@ class Content extends Component {
                             <TableFaixaEtaria tipo={this.state.tipoBusca} dados={this.state.linhas} />
                         </tbody>
                     </table>
+
+                </div>
+                <br />
+                <div style={{
+                    width: '75%', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'
+                }}>
+                    <br />
+                    <div >
+                        Todas as autuações de competência do Detran - GO, por infração capitulada no Código de Trânsito Brasileiro(CTB - Lei 9.503/97), a partir de 01/08/2018 passaram a ter seu extrato resumido publicado em Diário Oficial do Estado e a íntegra das notificações no sítio desta Entidade de Trânsito, nos termos da Resolição CONTRAN 619/2016, com vistas a cientificar das autuações e penalidades aplicadas e facilitar o acesso às informações pertinentes.
+                    </div>
                 </div>
             </div >
         );

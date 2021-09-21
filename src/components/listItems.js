@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -6,13 +6,14 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
-import { useHistory } from 'react-router-dom';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import BallotIcon from '@material-ui/icons/Ballot';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import PersonIcon from '@material-ui/icons/Person';
 import { isAuthenticated } from '../services/dados';
 import { logout } from '../services/auth';
+import { connect } from 'react-redux';
+import * as actions from '../actions'
 
 
 export function MainListItems() {
@@ -64,10 +65,24 @@ export function MainListItems() {
   )
 };
 
-export function SecondaryListItems() {
+
+
+function SecondaryListItems(props) {
   var logged
+  React.useEffect(() => {
+    props.getUser()
+  }, [])
+
   if (isAuthenticated() === true) {
+    if (props.usuario === undefined || props.usuario === '') {
+      return null
+    }
     logged = <div>
+      <ListItem>
+        <ListItemIcon>
+        </ListItemIcon>
+        <ListItemText primary={props.usuario.nome} />
+      </ListItem>
       <ListItem button onClick={() => logout()} >
         <ListItemIcon>
           <PersonIcon />
@@ -92,3 +107,8 @@ export function SecondaryListItems() {
     </div >
   )
 };
+
+const mapStateToProps = state => ({
+  usuario: state.auth.usuario
+})
+export default connect(mapStateToProps, actions)(SecondaryListItems)

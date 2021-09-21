@@ -1,9 +1,6 @@
-import { Grid, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import React, { Component } from "react";
-import { Button } from "semantic-ui-react";
-import InputMask from 'react-input-mask';
-
-import { getPlacasAutuacao, getPlacasPenalidades } from "../services/dados";
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import moment from "moment";
 //import * as fs from 'fs/promises';
 /* eslint eqeqeq: "off", "no-unused-vars": "off", curly: "error" */
@@ -82,22 +79,30 @@ class Content extends Component {
                     <Grid container spacing={3}>
                         <Grid item xs={12} sm={6} align='center'>
                             <a target='_blank' href="./docs/FORMULÁRIO - REQUERIMENTOS DIVERSOS - CMTT.pdf">
-                                <h1>REQUERIMENTOS DIVERSOS</h1>
+                                <h1 className='card-cmtt'>
+                                    <CloudDownloadIcon className='icon-cmtt' />
+                                    REQUERIMENTOS DIVERSOS</h1>
                             </a>
                         </Grid>
                         <Grid item xs={12} sm={6} align='center'>
                             <a target='_blank' href="./docs/FORMULÁRIO - IDENTIFICAÇÃO DE CONDUTOR INFRATOR - CMTT.pdf">
-                                <h1>IDENTIFICAÇÃO DE CONDUTOR INFRATOR</h1>
+                                <h1 className='card-cmtt'>
+                                    <CloudDownloadIcon className='icon-cmtt' />
+                                    IDENTIFICAÇÃO DE CONDUTOR INFRATOR</h1>
                             </a>
                         </Grid>
                         <Grid item xs={12} sm={6} align='center'>
                             <a target='_blank' href="./docs/FORMULÁRIO - DEFESA PRÉVIA OU RECURSO - CMTT.pdf">
-                                <h1>DEFESA PRÉVIA OU RECURSO</h1>
+                                <h1 className='card-cmtt'>
+                                    <CloudDownloadIcon className='icon-cmtt' />
+                                    DEFESA PRÉVIA OU RECURSO</h1>
                             </a>
                         </Grid>
                         <Grid item xs={12} sm={6} align='center'>
                             <a target='_blank' href="./docs/FORMULÁRIO - REQUERIMENTO DE EFEITO SUSPENSIVO - CMTT.pdf">
-                                <h1> REQUERIMENTO DE EFEITO SUSPENSIVO</h1>
+                                <span className='card-cmtt text-cmtt'>
+                                    <CloudDownloadIcon className='icon-cmtt' />
+                                    REQUERIMENTO DE EFEITO SUSPENSIVO </span>
                             </a>
                         </Grid>
                     </Grid>
