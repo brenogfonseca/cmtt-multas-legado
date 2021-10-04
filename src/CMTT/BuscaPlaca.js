@@ -2,7 +2,7 @@ import { Grid, TextField } from "@material-ui/core";
 import React, { Component } from "react";
 import { Button } from "semantic-ui-react";
 import InputMask from 'react-input-mask';
-
+import SearchIcon from '@material-ui/icons/Search';
 import { getPlacasAutuacao, getPlacasPenalidades } from "../services/dados";
 import moment from "moment";
 //import * as fs from 'fs/promises';
@@ -21,6 +21,8 @@ function TableFaixaEtaria(props) {
         item.venc_notificacao = moment(item.venc_notificacao).format('DD/MM/YYYY')
         item.dt_postagem = moment(item.dt_postagem).format('DD/MM/YYYY')
         item.dt_publicacao = moment(item.dt_publicacao).format('DD/MM/YYYY')
+        item.ver = moment(item.dt_cadastro).format('YYYYMMDD')
+        let ver = "https://cdn.anapolis.go.gov.br/docs-cmtt/" + item.ver + ".pdf"
         if (item.tipo_notificacao == 2) { tipo_notificacao = '2 - Penalidade' }
         else if (item.tipo_notificacao == 1) {
             tipo_notificacao = '1 - Autuação'
@@ -36,6 +38,7 @@ function TableFaixaEtaria(props) {
                 <td>{item.autuador}</td>
                 <td>{item.venc_notificacao}</td>
                 <td hidden={props.tipo === 'autuacao'}>{item.valor_infracao}</td>
+                <td>{<a target='_blank' href={ver}><SearchIcon /></a>}</td>
             </tr>
         )
     })
@@ -160,7 +163,7 @@ class Content extends Component {
                                 <th>Autuador</th>
                                 <th>Venc. Notificação</th>
                                 <th hidden={this.state.tipoBusca === 'autuacao'}>Valor Infração</th>
-
+                                <th>Ver</th>
                             </tr>
                         </thead>
                         <tbody>
