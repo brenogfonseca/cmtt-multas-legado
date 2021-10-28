@@ -65,8 +65,8 @@ class Content extends Component {
                 status: '',
                 message: ''
             },
-            data: '01/01/2021',
-            data2: '01/10/2021',
+            data: '',
+            data2: '',
             open: true
         };
         this.getEventos = this.getEventos.bind(this);

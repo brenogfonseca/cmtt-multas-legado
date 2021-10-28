@@ -36,7 +36,7 @@ function TableFaixaEtaria(props) {
   return dados.map(function (item, i) {
     var tipo_notificacao
     if (item.tipo_notif == 2) { tipo_notificacao = '2 - Penalidade' }
-    else if (item.tipo_notif == 1) { tipo_notificacao = '1 - Penalidade' }
+    else if (item.tipo_notif == 1) { tipo_notificacao = '1 - Autuação' }
     return (
       <tr key={i}>
         <td>{item.tipo}</td>
@@ -49,7 +49,6 @@ function TableFaixaEtaria(props) {
         <td>{item.cod_infracao}</td>
         <td>{item.autuador}</td>
         <td>{item.chave}</td>
-        <td>{item.dt_publicacao}</td>
         <td>{item.dt_venc_notif}</td>
         <td>{item.money}</td>
         <td>{item.dt_infracao}</td>
@@ -103,22 +102,19 @@ class Content extends Component {
         var cod_infracao = textLinha.slice(36, 41)
         var autuador = textLinha.slice(41, 47)
         var chave = textLinha.slice(47, 57)
-        var publicacao = textLinha.slice(57, 65)
-        var venc_notif = textLinha.slice(65, 73)
-        var valor_infracao = textLinha.slice(-12)
-
+        var dt_infracao = textLinha.slice(-8)
+        var venc_notif = textLinha.slice(57, 65)
+        var valor_infracao = textLinha.slice(65, 77)
         var dt_postagem = convertDate(postagem)
-        var dt_publicacao = convertDate(publicacao)
         var dt_venc_notif = convertDate(venc_notif)
-        var dt_infracao = convertDateUS(postagem)
-        var teste = new Date(dt_infracao)
-        dt_infracao = moment(teste.setDate(teste.getDate() - 9)).format('DD/MM/YYYY')
+        var dt_infracao = convertDate(dt_infracao)
         var formatter = new Intl.NumberFormat("br", {
           style: "currency",
           currency: "BRL"
         });
         var valor_inf = valor_infracao / 100
         var money = formatter.format(valor_inf)
+        console.log(money)
         return {
           tipo,
           sequencial,
@@ -130,7 +126,6 @@ class Content extends Component {
           cod_infracao,
           autuador,
           chave,
-          dt_publicacao,
           dt_venc_notif,
           money,
           dt_infracao,
@@ -236,7 +231,6 @@ class Content extends Component {
                 <th>Cod. Infração</th>
                 <th>Autuador</th>
                 <th>Chave</th>
-                <th>Publicação</th>
                 <th>Venc. Notificação</th>
                 <th>Valor da Infração</th>
                 <th>Data da Infração</th>
