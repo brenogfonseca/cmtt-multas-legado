@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import moment from "moment";
 import { apiBusca } from "../services/api";
 import { Toast, apareceAlert } from "../components/Alert"
-import { PrintDocumentImport } from "../services/dados";
+import { PrintAutuacaoImport, PrintDocumentImport2 } from "../services/dados";
 
 //import * as fs from 'fs/promises';
 /* eslint eqeqeq: "off", "no-unused-vars": "off", curly: "error" */
@@ -147,53 +146,58 @@ class Content extends Component {
   }
 
   async SendForm(event) {
-    event.preventDefault()
-    const { linhas } = this.state
-    var raw = { linhas }
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    // myHeaders.append("Authorization", token)
+    const confirma = window.confirm("Tem Certeza que deseja Cadastrar, não sera possível exportar?")
+    if (confirma === true) {
+      event.preventDefault()
+      const { linhas } = this.state
+      var raw = { linhas }
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      // myHeaders.append("Authorization", token)
 
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow"
-    };
-    await apiBusca.post("/Relatorios/cadastrar", requestOptions)
-      .then(response => {
-        this.setState({
-          alert: {
-            status: response.data.response.status,
-            message: response.data.response.result
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+      };
+      await apiBusca.post("/Relatorios/cadastrar", requestOptions)
+        .then(response => {
+          this.setState({
+            alert: {
+              status: response.data.response.status,
+              message: response.data.response.result
+            }
+          })
+          let propis = this.props
+          if (this.state.alert.status === 201) {
+            Toast.fire({
+              icon: 'success',
+              title: this.state.alert.message
+            }).then(function () {
+              apareceAlert(propis)
+            })
+
+          }
+          else if (this.state.alert.status !== 201) {
+            Toast.fire({
+              icon: 'error',
+              title: this.state.alert.message
+            })
           }
         })
-        let propis = this.props
-        if (this.state.alert.status === 200) {
-          Toast.fire({
-            icon: 'success',
-            title: this.state.alert.message
-          }).then(function () {
-            apareceAlert(propis)
-          })
 
-        }
-        else if (this.state.alert.status === 201) {
-          Toast.fire({
-            icon: 'error',
-            title: this.state.alert.message
+        .catch(error => {
+          this.setState({
+            alert: {
+              status: 201,
+              message: "Contate o Desenvolvedor do Sistema! cadastrarUnidades()->BAD_CONFIG"
+            }
           })
-        }
-      })
-
-      .catch(error => {
-        this.setState({
-          alert: {
-            status: 201,
-            message: "Contate o Desenvolvedor do Sistema! cadastrarUnidades()->BAD_CONFIG"
-          }
         })
-      })
+    } else {
+      event.preventDefault()
+    }
   }
 
 
@@ -204,7 +208,8 @@ class Content extends Component {
     return (
       <div>
         <h2 className='pma-center'>Importador Autuação</h2>
-        <button className='btn btn-pdf' onClick={() => PrintDocumentImport(this.state.linhas)}>PDF</button>
+        <button className='btn btn-pdf' onClick={() => PrintAutuacaoImport(this.state.linhas)}>PDF</button>
+        <button className='btn btn-cmtt-exp' style={{ marginLeft: '1vw' }} onClick={() => PrintDocumentImport2(this.state.linhas)}>PDF INTERNO CMTT</button>
         <p />
         <div >
           <input type="file" onChange={(e) => this.showFile(e)} />

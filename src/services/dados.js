@@ -89,12 +89,89 @@ export const isAuthenticated = () => {
     if (userLogged !== null && expira > dataTS) {
       return true;
     } else {
+      localStorage.removeItem(TOKEN_KEY);
       return false;
     }
   }
 }
 
 export function PrintDocumentImport(props) {
+
+  const doc = new jsPDF('landscape')
+  props.map(prop => {
+    //prop.dt_infracao = moment(prop.dt_infracao).format('DD/MM/YYYY')
+    prop.venc_notificacao = moment(prop.venc_notificacao).format('DD/MM/YYYY')
+    if (prop.tipo_notif == 2) { prop.tipo_notif = '2 - Penalidade' }
+    else if (prop.tipo_notif == 1) {
+      prop.tipo_notif = '1 - Autuação'
+      prop.money = '-'
+    }
+    return ''
+  })
+
+  doc.autoTable({
+    didDrawPage: function (data) {
+      doc.addImage(base64Img, 'PNG', 120, 10, 80, 15)
+    },
+    startY: 30,
+    theme: 'grid',
+    styles: { fontSize: 9 },
+    headStyles: { fillColor: [15, 76, 129] }, // European countries centered
+    body: props,
+    margin: { top: 30 },
+    columns: [
+      { header: 'Placa', dataKey: 'placa' },
+      { header: 'Auto', dataKey: 'auto' },
+      { header: 'Tipo', dataKey: 'tipo_notif' },
+      { header: 'Data', dataKey: 'dt_postagem' },
+      { header: 'Infração', dataKey: 'cod_infracao' },
+      { header: 'Autuador', dataKey: 'autuador' },
+      { header: 'Vencimento', dataKey: 'venc_notificacao' },
+      { header: 'Valor', dataKey: 'money' },
+    ],
+  })
+  doc.save('Penalidades.pdf')
+}
+
+
+export function PrintAutuacaoImport(props) {
+
+  const doc = new jsPDF('landscape')
+  props.map(prop => {
+    //prop.dt_infracao = moment(prop.dt_infracao).format('DD/MM/YYYY')
+    prop.venc_notificacao = moment(prop.venc_notificacao).format('DD/MM/YYYY')
+    if (prop.tipo_notif == 2) { prop.tipo_notif = '2 - Penalidade' }
+    else if (prop.tipo_notif == 1) {
+      prop.tipo_notif = '1 - Autuação'
+      prop.money = '-'
+    }
+    return ''
+  })
+
+  doc.autoTable({
+    didDrawPage: function (data) {
+      doc.addImage(base64Img, 'PNG', 120, 10, 80, 15)
+    },
+    startY: 30,
+    theme: 'grid',
+    styles: { fontSize: 9 },
+    headStyles: { fillColor: [15, 76, 129] }, // European countries centered
+    body: props,
+    margin: { top: 30 },
+    columns: [
+      { header: 'Placa', dataKey: 'placa' },
+      { header: 'Auto', dataKey: 'auto' },
+      { header: 'Tipo', dataKey: 'tipo_notif' },
+      { header: 'Data', dataKey: 'dt_postagem' },
+      { header: 'Infração', dataKey: 'cod_infracao' },
+      { header: 'Autuador', dataKey: 'autuador' },
+      { header: 'Vencimento', dataKey: 'venc_notificacao' },
+    ],
+  })
+  doc.save('Autuacao.pdf')
+}
+
+export function PrintDocumentImport2(props) {
 
   const doc = new jsPDF('landscape')
   props.map(prop => {

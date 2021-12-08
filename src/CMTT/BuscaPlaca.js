@@ -178,7 +178,7 @@ class Content extends Component {
                 }}>
                     <br />
                     <div >
-                        Todas as autuações de competência do Detran - GO, por infração capitulada no Código de Trânsito Brasileiro(CTB - Lei 9.503/97), a partir de 01/08/2018 passaram a ter seu extrato resumido publicado em Diário Oficial do Estado e a íntegra das notificações no sítio desta Entidade de Trânsito, nos termos da Resolição CONTRAN 619/2016, com vistas a cientificar das autuações e penalidades aplicadas e facilitar o acesso às informações pertinentes.
+                        Todas as notificações dos Autos de Infração de competência da Prefeitura de Anápolis-GO, previstos no Código de Trânsito Brasileiro (CTB - Lei 9.503/97), a partir de 06/12/2021 serão publicados no Diário Oficial do Município e a íntegra das respectivas notificações estarão disponíveis no sítio da Companhia Municipal de Trânsito, Transportes e Serviços Urbanos (CMTT), nos termos da Resolução nº 619/2016 do CONTRAN e nº 004/2017 do CETRAN-GO, com vistas a cientificar os proprietários e/ou condutores de veículos das autuações e penalidades aplicadas e facilitar o acesso às informações pertinentes.
                     </div>
                 </div>
             </div >
