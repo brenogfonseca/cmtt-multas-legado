@@ -1,7 +1,7 @@
 import { TOKEN_KEY } from "./../services/auth";
 import { apiBusca } from "./../services/api";
-import jsPDF from 'jspdf'
-import 'jspdf-autotable'
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 import { base64Img } from "../components/logo";
 import moment from "moment";
 /* eslint eqeqeq: "off", "no-unused-vars": "off", curly: "error" */
@@ -20,9 +20,9 @@ export function parseJwt(token) {
 //REGRAS GET
 export const getPlacasPenalidades = async (placa) => {
   const config = {
-    headers: { 'Authorization': token }
-  }
-  return new Promise(resolve =>
+    headers: { Authorization: token },
+  };
+  return new Promise((resolve) =>
     setTimeout(() => {
       resolve(apiBusca.get("/Busca/Penalidades/" + placa, config));
     }, 200)
@@ -31,9 +31,9 @@ export const getPlacasPenalidades = async (placa) => {
 
 export const getPlacasAutuacao = async (placa) => {
   const config = {
-    headers: { 'Authorization': token }
-  }
-  return new Promise(resolve =>
+    headers: { Authorization: token },
+  };
+  return new Promise((resolve) =>
     setTimeout(() => {
       resolve(apiBusca.get("/Busca/Autuacao/" + placa, config));
     }, 200)
@@ -43,23 +43,21 @@ export const getPlacasAutuacao = async (placa) => {
 export const getPlacasDatas = async (data, data2) => {
   const config = {
     headers: {
-      'Authorization': token,
+      Authorization: token,
     },
-
-  }
-  return new Promise(resolve =>
+  };
+  return new Promise((resolve) =>
     setTimeout(() => {
       resolve(apiBusca.get("/Busca/BuscaDatas/" + data + "/" + data2, config));
     }, 200)
   );
 };
 
-
 export const getRelatorioData = async (data) => {
   const config = {
-    headers: { 'Authorization': token }
-  }
-  return new Promise(resolve =>
+    headers: { Authorization: token },
+  };
+  return new Promise((resolve) =>
     setTimeout(() => {
       resolve(apiBusca.get("/Relatorios/" + data, config));
     }, 200)
@@ -69,23 +67,23 @@ export const getRelatorioData = async (data) => {
 export function ts2human(time) {
   var ts = time;
   var dt = new Date(ts * 1000);
-  return (ts, dt.toLocaleString());
+  return ts, dt.toLocaleString();
 }
 export function human2ts(data) {
   var di = data;
   var ts = Date.parse(di);
 
-  return (ts / 1000, ts / 1000);
+  return ts / 1000, ts / 1000;
 }
 
 export const isAuthenticated = () => {
   if (localStorage.getItem(TOKEN_KEY) === null) {
-    return false
+    return false;
   } else {
-    var userLogged = parseJwt(token).username
-    var expira = parseJwt(token).exp
+    var userLogged = parseJwt(token).username;
+    var expira = parseJwt(token).exp;
     var data = new Date();
-    var dataTS = human2ts(data)
+    var dataTS = human2ts(data);
     if (userLogged !== null && expira > dataTS) {
       return true;
     } else {
@@ -93,124 +91,101 @@ export const isAuthenticated = () => {
       return false;
     }
   }
-}
+};
 
 export function PrintDocumentImport(props) {
-
-  const doc = new jsPDF('landscape')
-  props.map(prop => {
-    //prop.dt_infracao = moment(prop.dt_infracao).format('DD/MM/YYYY')
-    prop.venc_notificacao = moment(prop.venc_notificacao).format('DD/MM/YYYY')
-    if (prop.tipo_notif == 2) { prop.tipo_notif = '2 - Penalidade' }
-    else if (prop.tipo_notif == 1) {
-      prop.tipo_notif = '1 - Autuação'
-      prop.money = '-'
-    }
-    return ''
-  })
+  const doc = new jsPDF("landscape");
 
   doc.autoTable({
     didDrawPage: function (data) {
-      doc.addImage(base64Img, 'PNG', 120, 10, 80, 15)
+      doc.addImage(base64Img, "PNG", 120, 10, 80, 15);
     },
     startY: 30,
-    theme: 'grid',
+    theme: "grid",
     styles: { fontSize: 9 },
     headStyles: { fillColor: [15, 76, 129] }, // European countries centered
     body: props,
     margin: { top: 30 },
     columns: [
-      { header: 'Placa', dataKey: 'placa' },
-      { header: 'Auto', dataKey: 'auto' },
-      { header: 'Tipo', dataKey: 'tipo_notif' },
-      { header: 'Data', dataKey: 'dt_postagem' },
-      { header: 'Infração', dataKey: 'cod_infracao' },
-      { header: 'Autuador', dataKey: 'autuador' },
-      { header: 'Vencimento', dataKey: 'venc_notificacao' },
-      { header: 'Valor', dataKey: 'money' },
+      { header: "Placa", dataKey: "placa" },
+      { header: "Auto", dataKey: "auto" },
+      { header: "Tipo", dataKey: "tipo_notif" },
+      { header: "Data", dataKey: "dt_postagem" },
+      { header: "Infração", dataKey: "cod_infracao" },
+      { header: "Autuador", dataKey: "autuador" },
+      { header: "Vencimento", dataKey: "venc_notificacao" },
+      { header: "Valor", dataKey: "money" },
     ],
-  })
-  doc.save('Penalidades.pdf')
+  });
+  doc.save("Penalidades.pdf");
 }
 
-
 export function PrintAutuacaoImport(props) {
-
-  const doc = new jsPDF('landscape')
-  props.map(prop => {
+  const doc = new jsPDF("landscape");
+  props.map((prop) => {
     //prop.dt_infracao = moment(prop.dt_infracao).format('DD/MM/YYYY')
-    prop.venc_notificacao = moment(prop.venc_notificacao).format('DD/MM/YYYY')
-    if (prop.tipo_notif == 2) { prop.tipo_notif = '2 - Penalidade' }
-    else if (prop.tipo_notif == 1) {
-      prop.tipo_notif = '1 - Autuação'
-      prop.money = '-'
+    prop.venc_notificacao = moment(prop.venc_notificacao).format("DD/MM/YYYY");
+    if (prop.tipo_notif == 2) {
+      prop.tipo_notif = "2 - Penalidade";
+    } else if (prop.tipo_notif == 1) {
+      prop.tipo_notif = "1 - Autuação";
+      prop.money = "-";
     }
-    return ''
-  })
+    return "";
+  });
 
   doc.autoTable({
     didDrawPage: function (data) {
-      doc.addImage(base64Img, 'PNG', 120, 10, 80, 15)
+      doc.addImage(base64Img, "PNG", 120, 10, 80, 15);
     },
     startY: 30,
-    theme: 'grid',
+    theme: "grid",
     styles: { fontSize: 9 },
     headStyles: { fillColor: [15, 76, 129] }, // European countries centered
     body: props,
     margin: { top: 30 },
     columns: [
-      { header: 'Placa', dataKey: 'placa' },
-      { header: 'Auto', dataKey: 'auto' },
-      { header: 'Tipo', dataKey: 'tipo_notif' },
-      { header: 'Data', dataKey: 'dt_postagem' },
-      { header: 'Infração', dataKey: 'cod_infracao' },
-      { header: 'Autuador', dataKey: 'autuador' },
-      { header: 'Vencimento', dataKey: 'venc_notificacao' },
+      { header: "Placa", dataKey: "placa" },
+      { header: "Auto", dataKey: "auto" },
+      { header: "Tipo", dataKey: "tipo_notif" },
+      { header: "Data", dataKey: "dt_postagem" },
+      { header: "Infração", dataKey: "cod_infracao" },
+      { header: "Autuador", dataKey: "autuador" },
+      { header: "Vencimento", dataKey: "dt_venc_notif" },
     ],
-  })
-  doc.save('Autuacao.pdf')
+  });
+  doc.save("Autuacao.pdf");
 }
 
 export function PrintDocumentImport2(props) {
-
-  const doc = new jsPDF('landscape')
-  props.map(prop => {
-    //prop.dt_infracao = moment(prop.dt_infracao).format('DD/MM/YYYY')
-    prop.venc_notificacao = moment(prop.venc_notificacao).format('DD/MM/YYYY')
-    if (prop.tipo_notif == 2) { prop.tipo_notif = '2 - Penalidade' }
-    else if (prop.tipo_notif == 1) {
-      prop.tipo_notif = '1 - Autuação'
-      prop.money = '-'
-    }
-    return ''
-  })
+  const doc = new jsPDF("landscape");
 
   doc.autoTable({
     didDrawPage: function (data) {
-      doc.addImage(base64Img, 'PNG', 120, 10, 80, 15)
+      doc.addImage(base64Img, "PNG", 120, 10, 80, 15);
     },
     startY: 30,
-    theme: 'grid',
+    theme: "grid",
     styles: { fontSize: 9 },
     headStyles: { fillColor: [15, 76, 129] }, // European countries centered
     body: props,
     margin: { top: 30 },
     columns: [
-      { header: 'Tipo', dataKey: 'tipo' },
-      { header: 'Seq', dataKey: 'sequencial' },
-      { header: 'Placa', dataKey: 'placa' },
-      { header: 'Auto de Infração', dataKey: 'auto' },
-      { header: 'Tipo Notificação', dataKey: 'tipo_notif' },
-      { header: 'Motivo', dataKey: 'motivo' },
-      { header: 'Dt. Postagem', dataKey: 'dt_postagem' },
-      { header: 'Cod. Infração', dataKey: 'cod_infracao' },
-      { header: 'Cod. Autuador', dataKey: 'autuador' },
-      { header: 'Chave', dataKey: 'chave' },
-      { header: 'Dt. Publicação', dataKey: 'dt_publicacao' },
-      { header: 'Dt. Vencimento', dataKey: 'venc_notificacao' },
-      { header: 'Valor Infração', dataKey: 'money' },
-      { header: 'Dt. Infração', dataKey: 'dt_infracao' },
+      { header: "Tipo", dataKey: "tipo" },
+      { header: "Seq", dataKey: "sequencial" },
+      { header: "Placa", dataKey: "placa" },
+      { header: "Auto de Infração", dataKey: "auto" },
+      { header: "Tipo Notificação", dataKey: "tipo_notif" },
+      { header: "Motivo", dataKey: "motivo" },
+      { header: "Dt. Postagem", dataKey: "dt_postagem" },
+      { header: "Cod. Infração", dataKey: "cod_infracao" },
+      { header: "Cod. Autuador", dataKey: "autuador" },
+      { header: "Chave", dataKey: "chave" },
+      { header: "Dt. Publicação", dataKey: "dt_publicacao" },
+      { header: "Dt. Vencimento", dataKey: "dt_venc_notif" },
+      { header: "Valor Infração", dataKey: "money" },
+      { header: "Dt. Infração", dataKey: "dt_infracao" },
     ],
-  })
-  doc.save('table.pdf')
+  });
+  doc.save("table.pdf");
 }
