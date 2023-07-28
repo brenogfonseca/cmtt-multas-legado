@@ -97,8 +97,6 @@ export default function ImportPenalidades() {
     });
   };
 
-  console.log(linhas);
-
   return (
     <div align={"center"}>
       <Typography align={"center"} variant={"h4"}>
