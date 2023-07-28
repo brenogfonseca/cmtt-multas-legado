@@ -1,4 +1,5 @@
 import { Button, Card, TextField, Typography } from "@material-ui/core";
+import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { PatternFormat } from "react-number-format";
@@ -72,7 +73,7 @@ export default function ImportPenalidades() {
     reader.readAsText(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const dataFormulario = moment(data, "DD/MM/YYYY");
@@ -81,6 +82,19 @@ export default function ImportPenalidades() {
     if (dataAtual < dataFormulario) {
       alert("data maior");
     }
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    // myHeaders.append("Authorization", token)
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: linhas,
+      redirect: "follow",
+    };
+    await axios.post("http://192.168.1.112:4700/upload/json", {
+      json: linhas,
+    });
   };
 
   console.log(linhas);
