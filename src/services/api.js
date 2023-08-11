@@ -20,7 +20,7 @@ export const apiBusca = axios.create({
 });
 
 export const api47 = axios.create({
-  baseURL: testecdn47,
+  baseURL: cdn47URL,
 });
 
 apiBusca.interceptors.request.use(async (config) => {

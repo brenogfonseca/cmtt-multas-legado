@@ -11,19 +11,32 @@ export default function ImportCdn({ loading, formSubmitted, response }) {
         </Box>
       ) : (
         <Box>
-          <Typography variant="h5">Arquivo Gerado Com Sucesso</Typography>
-          <Button
-            href="https://api.anapolis.go.gov.br/apiupload/cmtt/penalidade/cmtt-PENALIDADE-1691671212283.pdf"
-            target="_blank"
-          >
-            PDF Diário
-          </Button>
-          <Button
-            href="https://api.anapolis.go.gov.br/apiupload/cmtt/penalidade/cmtt-PENALIDADE-1691671212283.pdf"
-            target="_blank"
-          >
-            PDF Interno
-          </Button>
+          <Typography variant="h5" style={{ marginTop: "1em" }}>
+            Arquivo Gerado Com Sucesso
+          </Typography>
+          <Grid container>
+            <Grid item xs={12}>
+              <Button
+                style={{ marginTop: "1em", marginBottom: "1em" }}
+                fullWidth
+                variant="contained"
+                href="https://api.anapolis.go.gov.br/apiupload/cmtt/penalidade/cmtt-PENALIDADE-1691671212283.pdf"
+                target="_blank"
+              >
+                PDF Diário
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                fullWidth
+                variant="contained"
+                href="https://api.anapolis.go.gov.br/apiupload/cmtt/penalidade/cmtt-PENALIDADE-1691671212283.pdf"
+                target="_blank"
+              >
+                PDF Interno
+              </Button>
+            </Grid>
+          </Grid>
         </Box>
       )}
     </Grid>

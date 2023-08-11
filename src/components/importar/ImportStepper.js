@@ -19,8 +19,13 @@ export default function ImportStepper({ json }) {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingCdn, setLoadingCdn] = useState(false);
-  const [dadosRecebidos, setDadosRecebidos] = useState();
-  const [dadosRecebidosDb, setDadosRecebidosDb] = useState();
+  const [dadosRecebidos, setDadosRecebidos] = useState({
+    message: "",
+  });
+  const [dadosRecebidosDb, setDadosRecebidosDb] = useState({
+    message: "",
+    linhasAlteradas: "",
+  });
 
   const getTipoNome = (linha) => {
     switch (linha.tipo_notif) {
@@ -72,11 +77,8 @@ export default function ImportStepper({ json }) {
       setLoadingCdn(false);
       return response;
     });
-    console.log(responseCdn);
     setDadosRecebidos(responseCdn);
   };
-
-  console.log(dadosRecebidosDb);
 
   return (
     <Card component={"form"} onSubmit={handleSubmit}>

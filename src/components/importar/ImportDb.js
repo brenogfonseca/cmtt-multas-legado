@@ -14,7 +14,9 @@ export default function ImportDb({ loading, formSubmitted, response }) {
           <Typography variant="h5" style={{ marginTop: "1em" }}>
             {response.message}
           </Typography>
-          Linhas adicionadas no Banco: {response.linhasAlteradas}
+          <Typography style={{ marginTop: "1em" }}>
+            Linhas adicionadas no Banco: {response.linhasAlteradas}
+          </Typography>
         </Box>
       )}
     </Grid>
