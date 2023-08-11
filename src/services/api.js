@@ -1,9 +1,11 @@
 import axios from "axios";
 import { getToken } from "./auth";
-// export var apiURL = "https://api.anapolis.go.gov.br/cmtt";
 var apiURLBairros = "https://api.anapolis.go.gov.br/formSocialApi";
-export var apiURL = "http://localhost:3003";
+// export var apiURL = "https://api.anapolis.go.gov.br/cmtt";
+export var apiURL = "http://localhost:3007";
 export var cdnURL = "https://cdn.anapolis.go.gov.br/img/";
+export const cdn47URL = "https://api.anapolis.go.gov.br/apiupload";
+const testecdn47 = "http://localhost:4700";
 
 const api = axios.create({
   baseURL: apiURL,
@@ -15,6 +17,10 @@ export const apiBairros = axios.create({
 
 export const apiBusca = axios.create({
   baseURL: apiURL,
+});
+
+export const api47 = axios.create({
+  baseURL: testecdn47,
 });
 
 apiBusca.interceptors.request.use(async (config) => {

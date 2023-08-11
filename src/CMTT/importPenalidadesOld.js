@@ -79,6 +79,79 @@ class Content extends Component {
 
   async getEventos() {}
 
+  showFile = async (e) => {
+    e.preventDefault();
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const text = e.target.result;
+      const textLinhas = text.split("\n");
+      textLinhas.pop();
+      textLinhas.pop();
+      textLinhas.shift();
+      const textObjetos = textLinhas.map((textLinha, i) => {
+        textLinha = textLinha.replace(/\s+/g, "");
+
+        var tipo = textLinha.slice(0, 2);
+        var sequencial = textLinha.slice(2, 8);
+        var placa = textLinha.slice(8, 15);
+        var auto = textLinha.slice(15, 25);
+        var tipo_notif = textLinha.slice(25, 26);
+        var motivo = textLinha.slice(26, 28);
+        var postagem = textLinha.slice(28, 36);
+        var cod_infracao = textLinha.slice(36, 41);
+        var autuador = textLinha.slice(41, 47);
+        var chave = textLinha.slice(47, 57);
+        var dt_infracao = textLinha.slice(-8);
+        var venc_notif = textLinha.slice(57, 65);
+        var valor_infracao = textLinha.slice(65, 77);
+        var dt_postagem = convertDate(postagem);
+        var dt_venc_notif = convertDate(venc_notif);
+        var dt_infracao = convertDate(dt_infracao);
+        var formatter = new Intl.NumberFormat("br", {
+          style: "currency",
+          currency: "BRL",
+        });
+        var valor_inf = valor_infracao / 100;
+        var money = formatter.format(valor_inf);
+        console.log(money);
+        return {
+          tipo,
+          sequencial,
+          placa,
+          auto,
+          tipo_notif,
+          motivo,
+          dt_postagem,
+          cod_infracao,
+          autuador,
+          chave,
+          dt_venc_notif,
+          money,
+          dt_infracao,
+        };
+      });
+      this.setState({ linhas: textObjetos });
+    };
+    reader.readAsText(e.target.files[0]);
+  };
+
+  showFile2 = async (e) => {
+    e.preventDefault();
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const text = e.target.result;
+      var textLinhas = text.split("\n");
+      const arrayLinhas = textLinhas.map((textLinha) => {
+        var teste = textLinha.replace(/\s/g, "");
+        // textLinhas.replace(, '')
+        return teste;
+      });
+      this.setState({ linhas: arrayLinhas });
+      // alert(textLinhas[0])
+    };
+    reader.readAsText(e.target.files[0]);
+  };
+
   async SendForm(event) {
     const confirma = window.confirm(
       "Tem Certeza que deseja Cadastrar, não sera possível exportar?"
@@ -184,7 +257,7 @@ class Content extends Component {
               </tr>
             </thead>
             <tbody>
-              {/* <TableFaixaEtaria dados={this.state.linhas} /> */}
+              <TableFaixaEtaria dados={this.state.linhas} />
             </tbody>
           </table>
           <form id="wizard" onSubmit={this.SendForm}>
