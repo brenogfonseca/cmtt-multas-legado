@@ -3,6 +3,7 @@ import React from "react";
 
 export default function ImportCdn({ loading, formSubmitted, response }) {
   if (!formSubmitted) return null;
+  console.log(response);
   return (
     <Grid item>
       {loading ? (
@@ -20,7 +21,7 @@ export default function ImportCdn({ loading, formSubmitted, response }) {
                 style={{ marginTop: "1em", marginBottom: "1em" }}
                 fullWidth
                 variant="contained"
-                href="https://api.anapolis.go.gov.br/apiupload/cmtt/penalidade/cmtt-PENALIDADE-1691671212283.pdf"
+                href={`https://api.anapolis.go.gov.br/apiupload/cmtt/penalidade/${response.responseDiario.pathFile}`}
                 target="_blank"
               >
                 PDF Diário
@@ -30,7 +31,7 @@ export default function ImportCdn({ loading, formSubmitted, response }) {
               <Button
                 fullWidth
                 variant="contained"
-                href="https://api.anapolis.go.gov.br/apiupload/cmtt/penalidade/cmtt-PENALIDADE-1691671212283.pdf"
+                href={`https://api.anapolis.go.gov.br/apiupload/cmtt/penalidade/${response.responseInterno.pathFile}`}
                 target="_blank"
               >
                 PDF Interno
