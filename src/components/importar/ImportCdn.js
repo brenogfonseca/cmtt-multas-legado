@@ -3,7 +3,6 @@ import React from "react";
 
 export default function ImportCdn({ loading, formSubmitted, response }) {
   if (!formSubmitted) return null;
-  console.log(response);
   return (
     <Grid item>
       {loading ? (

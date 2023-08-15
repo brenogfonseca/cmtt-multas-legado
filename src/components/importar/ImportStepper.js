@@ -20,7 +20,14 @@ export default function ImportStepper({ json }) {
   const [loading, setLoading] = useState(false);
   const [loadingCdn, setLoadingCdn] = useState(false);
   const [dadosRecebidos, setDadosRecebidos] = useState({
-    message: "",
+    responseDiario: {
+      message: "",
+      pathFile: "",
+    },
+    responseInterno: {
+      message: "",
+      pathFile: "",
+    },
   });
   const [dadosRecebidosDb, setDadosRecebidosDb] = useState({
     message: "",
