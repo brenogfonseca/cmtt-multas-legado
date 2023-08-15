@@ -1,8 +1,8 @@
 import axios from "axios";
 import { getToken } from "./auth";
 var apiURLBairros = "https://api.anapolis.go.gov.br/formSocialApi";
-// export var apiURL = "https://api.anapolis.go.gov.br/cmtt";
-export var apiURL = "http://localhost:3007";
+export var apiURL = "https://api.anapolis.go.gov.br/apicmttteste";
+// export var apiURL = "http://localhost:3007";
 export var cdnURL = "https://cdn.anapolis.go.gov.br/img/";
 export const cdn47URL = "https://api.anapolis.go.gov.br/apiupload";
 const testecdn47 = "http://localhost:4700";
