@@ -1,25 +1,15 @@
-import {
-  Box,
-  Button,
-  Card,
-  Grid,
-  TextField,
-  Typography,
-} from "@material-ui/core";
+import { Box, Grid } from "@material-ui/core";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { PatternFormat } from "react-number-format";
-import { api47, apiBusca } from "../../services/api";
 import { postJsonApi, postRelatorioDb } from "../../actions";
 import ImportDb from "./ImportDb";
 import ImportCdn from "./ImportCdn";
+import ImportUpload from "./ImportUpload";
 
 export default function ImportStepper({ json }) {
   const [data, setData] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [loadingCdn, setLoadingCdn] = useState(false);
-  const [dadosRecebidos, setDadosRecebidos] = useState({
+  const [stateCdn, setStateCdn] = useState({
     responseDiario: {
       message: "",
       pathFile: "",
@@ -28,11 +18,18 @@ export default function ImportStepper({ json }) {
       message: "",
       pathFile: "",
     },
+    status: "idle",
   });
-  const [dadosRecebidosDb, setDadosRecebidosDb] = useState({
-    message: "",
-    linhasAlteradas: "",
+  const [stateDb, setStateDb] = useState({
+    response: {
+      message: "",
+      linhasAlteradas: "",
+    },
+    status: "idle",
   });
+
+  console.log(stateDb);
+  console.log(stateCdn);
 
   const getTipoNome = (linha) => {
     switch (linha.tipo_notif) {
@@ -58,11 +55,12 @@ export default function ImportStepper({ json }) {
     const dataAtual = new Date();
 
     if (dataAtual < dataFormulario) {
+      //mudar texto para forma mais bonita usando toast
       alert("data maior");
+      return;
     }
     setFormSubmitted(true);
-    setLoading(true);
-    setLoadingCdn(true);
+
     const tipoNome = getTipoNome(json[0]);
     const dataToSendDb = {
       linhas: json,
@@ -74,59 +72,27 @@ export default function ImportStepper({ json }) {
       tipoNome,
     };
 
-    const responseDb = await postRelatorioDb(dataToSendDb).then((response) => {
-      setLoading(false);
-      return response;
+    postRelatorioDb(dataToSendDb, setStateDb).then(() => {
+      postJsonApi(dataToSendCdn, setStateCdn);
     });
-    setDadosRecebidosDb(responseDb);
-
-    const responseCdn = await postJsonApi(dataToSendCdn).then((response) => {
-      setLoadingCdn(false);
-      return response;
-    });
-    setDadosRecebidos(responseCdn);
   };
 
   return (
-    <Card component={"form"} onSubmit={handleSubmit}>
+    <Box component={"form"} onSubmit={handleSubmit}>
       <Grid container justifyContent="space-around">
-        <Grid item>
-          <Typography variant="h5" style={{ marginTop: "1em" }}>
-            Arquivo Carregado Com Sucesso
-          </Typography>
-          <Typography style={{ marginTop: "1em" }}>
-            Quantidade de Penalidades carregadas: {json.length}
-          </Typography>
-          <PatternFormat
-            style={{ marginTop: "1em" }}
-            value={data}
-            onChange={(e) => setData(e.target.value)}
-            customInput={TextField}
-            format="##/##/####"
-            variant="outlined"
-            label="Data de envio"
-          />
-          <br />
-          <Button
-            style={{ marginTop: "1em" }}
-            color="primary"
-            variant="contained"
-            type="submit"
-          >
-            Enviar dados
-          </Button>
-        </Grid>
-        <ImportDb
-          loading={loading}
+        <ImportUpload
+          data={data}
+          setData={setData}
+          json={json}
           formSubmitted={formSubmitted}
-          response={dadosRecebidosDb}
         />
+        <ImportDb formSubmitted={formSubmitted} stateDb={stateDb} />
         <ImportCdn
-          loading={loadingCdn}
           formSubmitted={formSubmitted}
-          response={dadosRecebidos}
+          stateCdn={stateCdn}
+          stateDb={stateDb}
         />
       </Grid>
-    </Card>
+    </Box>
   );
 }

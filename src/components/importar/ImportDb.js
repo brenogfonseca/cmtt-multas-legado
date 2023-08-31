@@ -1,22 +1,37 @@
-import { Box, Grid, Typography } from "@material-ui/core";
+import {
+  Box,
+  Card,
+  CircularProgress,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 import React from "react";
 
-export default function ImportDb({ loading, formSubmitted, response }) {
+export default function ImportDb({ formSubmitted, stateDb }) {
   if (!formSubmitted) return null;
+  const { response, status } = stateDb;
   return (
-    <Grid item>
-      {loading ? (
+    <Grid component={Card} style={{ padding: "2em" }} item xs={4}>
+      <Typography variant="h5">Banco de Dados</Typography>
+      {status === "loading" ? (
         <Box>
-          <Typography>Enviando Dados</Typography>
+          <Typography variant="h5" style={{ marginTop: "1em" }}>
+            Enviando Dados
+          </Typography>
+          <CircularProgress />
         </Box>
       ) : (
         <Box>
-          <Typography variant="h5" style={{ marginTop: "1em" }}>
+          <Typography style={{ marginTop: "1em" }}>
             {response.message}
           </Typography>
-          <Typography style={{ marginTop: "1em" }}>
-            Linhas adicionadas no Banco: {response.linhasAlteradas}
-          </Typography>
+          {status === "success" ? (
+            <Typography style={{ marginTop: "1em" }}>
+              Linhas adicionadas no Banco: {response.linhasAlteradas}
+            </Typography>
+          ) : (
+            <Typography style={{ marginTop: "1em" }}>Erro No Envio</Typography>
+          )}
         </Box>
       )}
     </Grid>
