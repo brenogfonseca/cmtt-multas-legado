@@ -2,7 +2,7 @@ import { Box, Button, Card, Grid, Typography } from "@material-ui/core";
 import React from "react";
 
 export default function ImportCdn({ formSubmitted, stateCdn, stateDb, tipo }) {
-  console.log("Tipo do Importcdn: " + tipo)
+  console.log("Tipo do Importcdn: " + tipo);
   if (!formSubmitted || stateDb.status !== "success") return null;
   const { responseDiario, responseInterno } = stateCdn;
   return (
@@ -26,7 +26,9 @@ export default function ImportCdn({ formSubmitted, stateCdn, stateDb, tipo }) {
                   fullWidth
                   variant="contained"
                   //href={`https://api.anapolis.go.gov.br/apiupload/cmtt/autuacao/${response.responseDiario.pathFile}`}
-                  href={`https://api.anapolis.go.gov.br/apiupload/cmtt/${tipo === 'AUTUACAO' ? 'autuacao' : 'penalidade'}/${stateCdn.responseDiario.pathFile}`}
+                  href={`https://api.anapolis.go.gov.br/apiupload/cmtt/${
+                    tipo === "AUTUACAO" ? "autuacao" : "penalidade"
+                  }/${responseDiario.pathFile}`}
                   target="_blank"
                 >
                   PDF Diário
@@ -41,7 +43,9 @@ export default function ImportCdn({ formSubmitted, stateCdn, stateDb, tipo }) {
                   fullWidth
                   variant="contained"
                   //href={`https://api.anapolis.go.gov.br/apiupload/cmtt/penalidade/${stateCdn.responseInterno.pathFile}`}
-                  href={`https://api.anapolis.go.gov.br/apiupload/cmtt/${tipo === 'AUTUACAO' ? 'autuacao' : 'penalidade'}/${response.responseInterno.pathFile}`}
+                  href={`https://api.anapolis.go.gov.br/apiupload/cmtt/${
+                    tipo === "AUTUACAO" ? "autuacao" : "penalidade"
+                  }/${responseInterno.pathFile}`}
                   target="_blank"
                 >
                   PDF Interno

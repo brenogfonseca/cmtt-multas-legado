@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export const ImportAutuacao = () => {
   const [json, setJson] = useState([]);
-  console.log(json)
+  console.log(json);
 
   const convertDate = (date) => {
     if (date == "" || date == undefined || date == null) {
@@ -25,7 +25,6 @@ export const ImportAutuacao = () => {
     e.preventDefault();
     const reader = new FileReader();
     reader.onload = async (e) => {
-      const text = e.target.result;
       const text = e.target.result;
       const textLinhas = text.split("\n");
       textLinhas.pop();
@@ -105,5 +104,5 @@ export const ImportAutuacao = () => {
         </label>
       )}
     </div>
-  )
-}
+  );
+};
