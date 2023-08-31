@@ -1,9 +1,9 @@
 import { TOKEN_KEY } from "./../services/auth";
-import { apiBusca } from "./../services/api";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { base64Img } from "../components/logo";
 import moment from "moment";
+import { apiCmtt } from "./api";
 /* eslint eqeqeq: "off", "no-unused-vars": "off", curly: "error" */
 
 export const token = localStorage.getItem(TOKEN_KEY);
@@ -24,7 +24,7 @@ export const getPlacasPenalidades = async (placa) => {
   };
   return new Promise((resolve) =>
     setTimeout(() => {
-      resolve(apiBusca.get("/Busca/Penalidades/" + placa, config));
+      resolve(apiCmtt.get("/Busca/Penalidades/" + placa, config));
     }, 200)
   );
 };
@@ -35,7 +35,7 @@ export const getPlacasAutuacao = async (placa) => {
   };
   return new Promise((resolve) =>
     setTimeout(() => {
-      resolve(apiBusca.get("/Busca/Autuacao/" + placa, config));
+      resolve(apiCmtt.get("/Busca/Autuacao/" + placa, config));
     }, 200)
   );
 };
@@ -48,7 +48,7 @@ export const getPlacasDatas = async (data, data2) => {
   };
   return new Promise((resolve) =>
     setTimeout(() => {
-      resolve(apiBusca.get("/Busca/BuscaDatas/" + data + "/" + data2, config));
+      resolve(apiCmtt.get("/Busca/BuscaDatas/" + data + "/" + data2, config));
     }, 200)
   );
 };
@@ -59,7 +59,7 @@ export const getRelatorioData = async (data) => {
   };
   return new Promise((resolve) =>
     setTimeout(() => {
-      resolve(apiBusca.get("/Relatorios/" + data, config));
+      resolve(apiCmtt.get("/Relatorios/" + data, config));
     }, 200)
   );
 };

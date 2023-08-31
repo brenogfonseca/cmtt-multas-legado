@@ -1,3 +1,7 @@
+import React, { Component } from "react";
+import { Toast, apareceAlert } from "../components/Alert";
+import { PrintAutuacaoImport, PrintDocumentImport2 } from "../services/dados";
+import { apiCmtt } from "../services/api";
 import { Button, Typography } from "@material-ui/core";
 import ImportStepper from "../components/importar/ImportStepper";
 import { useState } from "react";
@@ -21,6 +25,7 @@ export const ImportAutuacao = () => {
     e.preventDefault();
     const reader = new FileReader();
     reader.onload = async (e) => {
+      const text = e.target.result;
       const text = e.target.result;
       const textLinhas = text.split("\n");
       textLinhas.pop();

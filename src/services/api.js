@@ -1,29 +1,36 @@
 import axios from "axios";
 import { getToken } from "./auth";
 var apiURLBairros = "https://api.anapolis.go.gov.br/formSocialApi";
-export var apiURL = "https://api.anapolis.go.gov.br/apicmttteste";
 // export var apiURL = "http://localhost:3007";
 export var cdnURL = "https://cdn.anapolis.go.gov.br/img/";
-export const cdn47URL = "https://api.anapolis.go.gov.br/apiupload";
-const testecdn47 = "http://localhost:4700";
 
+let apiUrl;
+let cdnUrl;
+
+if (process.env.NODE_ENV === "development") {
+  apiUrl = "http://localhost:3001";
+  cdnUrl = "http://localhost:4700";
+} else {
+  apiUrl = "https://api.anapolis.go.gov.br/apicmttteste";
+  cdnUrl = "https://api.anapolis.go.gov.br/apiupload";
+}
 const api = axios.create({
-  baseURL: apiURL,
+  baseURL: apiUrl,
 });
 
 export const apiBairros = axios.create({
   baseURL: apiURLBairros,
 });
 
-export const apiBusca = axios.create({
-  baseURL: apiURL,
+export const apiCmtt = axios.create({
+  baseURL: apiUrl,
 });
 
 export const api47 = axios.create({
-  baseURL: cdn47URL,
+  baseURL: cdnUrl,
 });
 
-apiBusca.interceptors.request.use(async (config) => {
+apiCmtt.interceptors.request.use(async (config) => {
   const token2 = getToken();
   if (token2) {
     config.headers.Authorization = token2;

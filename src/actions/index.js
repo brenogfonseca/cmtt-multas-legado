@@ -1,8 +1,7 @@
-import axios from "axios";
 import moment from "moment";
 import { LOGIN_USER, RELATORIOS_DIARIOS } from "./types";
 import { saveToken, getHeaders, cleanToken } from "./localStorage";
-import { api47, apiBusca, apiURL } from "../services/api";
+import { api47, apiCmtt } from "../services/api";
 
 export const initApp = () => {
   const opcaoLembrar = localStorage.getItem("opcaoLembrar");
@@ -11,8 +10,8 @@ export const initApp = () => {
 
 export const getUser = () => {
   return function (dispatch) {
-    axios
-      .get(`${apiURL}/Login/getUsers`, getHeaders())
+    apiCmtt
+      .get(`/Login/getUsers`, getHeaders())
       .then((response) => {
         saveToken(response.data, true);
         dispatch({ type: LOGIN_USER, payload: response.data });
@@ -33,8 +32,8 @@ export const getRelatorioData = () => {
   var date1 = data.setDate(data.getDate() - 1);
   var date = moment(date1).format("YYYY-MM-DD");
   return function (dispatch) {
-    axios
-      .get(`${apiURL}/Relatorios/` + date, getHeaders())
+    apiCmtt
+      .get(`/Relatorios/` + date, getHeaders())
       .then((response) => {
         saveToken(response.data, true);
         dispatch({ type: RELATORIOS_DIARIOS, payload: response.data });
@@ -49,48 +48,66 @@ export const getRelatorioData = () => {
   };
 };
 
-export const postRelatorioDb = async (dataToSend) => {
+export const postRelatorioDb = async (dataToSend, setStateDb) => {
+  setStateDb((prev) => ({
+    ...prev,
+    status: "loading",
+  }));
   const { linhas, data } = dataToSend;
-  const response = await apiBusca
+  const response = await apiCmtt
     .post("/Relatorios/Cadastrar", { linhas, data })
     .then((response) => {
-      return response.data;
+      setStateDb({
+        status: "success",
+        response: response.data,
+      });
+      return "success";
     })
     .catch((error) => {
-      console.log(error.message);
+      setStateDb({
+        status: "error",
+        response: error,
+      });
     });
   return response;
 };
 
-export const postJsonApi = async (dataToSend) => {
+export const postJsonApi = async (dataToSend, setStateCdn) => {
+  setStateCdn((prev) => ({
+    ...prev,
+    status: "loading",
+  }));
   const { tipoNome, json } = dataToSend;
-  let templateList;
-
-  if (tipoNome === "AUTUACAO") {
-    templateList = ["AUTUACAO", "AUTUACAO-INTERNO"];
-  } else {
-    templateList = ["PENALIDADE", "PENALIDADE-INTERNO"];
-  }
 
   const responseDiario = await api47
     .post(
-      `/upload/json?application=cmtt&tipo=${tipoNome}&template=${templateList[0]}`,
+      `/upload/json?application=cmtt&tipo=${tipoNome}&template=${tipoNome}`,
       { json }
     )
     .then((response) => {
       return response.data;
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      return {
+        message: error.message,
+        status: "error",
+      };
+    });
 
   const responseInterno = await api47
     .post(
-      `/upload/json?application=cmtt&tipo=${tipoNome}&template=${templateList[1]}`,
+      `/upload/json?application=cmtt&tipo=${tipoNome}&template=${tipoNome}-INTERNO`,
       { json }
     )
     .then((response) => {
       return response.data;
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      return {
+        message: error.message,
+        status: "error",
+      };
+    });
 
-  return { responseDiario, responseInterno };
+  setStateCdn({ responseDiario, responseInterno, status: "success" });
 };

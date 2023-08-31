@@ -27,8 +27,12 @@ export default function ImportPenalidades() {
       textLinhas.pop();
       textLinhas.pop();
       textLinhas.shift();
-      const textArray = textLinhas.map((textLinha, i) => {
+
+      const penalidadeArray = textLinhas.map((textLinha, i) => {
         textLinha = textLinha.replace(/\s+/g, "");
+        //if
+        if (textLinha.slice(0, 2) === 2) {
+        }
 
         const tipo = textLinha.slice(0, 2);
         const sequencial = textLinha.slice(2, 8);
@@ -68,14 +72,19 @@ export default function ImportPenalidades() {
           dt_infracao,
         };
       });
-      setJson(textArray);
+      setJson(penalidadeArray);
     };
     reader.readAsText(e.target.files[0]);
   };
+  console.log(json);
 
   return (
     <div align={"center"}>
-      <Typography align={"center"} variant={"h4"}>
+      <Typography
+        style={{ marginBottom: "1em" }}
+        align={"center"}
+        variant={"h4"}
+      >
         Importar Penalidades
       </Typography>
 
