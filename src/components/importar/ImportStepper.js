@@ -15,10 +15,14 @@ import ImportDb from "./ImportDb";
 import ImportCdn from "./ImportCdn";
 
 export default function ImportStepper({ json }) {
+
   const [data, setData] = useState("");
+
+
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingCdn, setLoadingCdn] = useState(false);
+  const [tipo, setTipo] = useState('')
   const [dadosRecebidos, setDadosRecebidos] = useState({
     responseDiario: {
       message: "",
@@ -29,10 +33,14 @@ export default function ImportStepper({ json }) {
       pathFile: "",
     },
   });
+
+
   const [dadosRecebidosDb, setDadosRecebidosDb] = useState({
     message: "",
     linhasAlteradas: "",
   });
+
+
 
   const getTipoNome = (linha) => {
     switch (linha.tipo_notif) {
@@ -59,11 +67,14 @@ export default function ImportStepper({ json }) {
 
     if (dataAtual < dataFormulario) {
       alert("data maior");
+      return
     }
     setFormSubmitted(true);
     setLoading(true);
     setLoadingCdn(true);
     const tipoNome = getTipoNome(json[0]);
+
+
     const dataToSendDb = {
       linhas: json,
       data,
@@ -74,6 +85,7 @@ export default function ImportStepper({ json }) {
       tipoNome,
     };
 
+
     const responseDb = await postRelatorioDb(dataToSendDb).then((response) => {
       setLoading(false);
       return response;
@@ -82,9 +94,12 @@ export default function ImportStepper({ json }) {
 
     const responseCdn = await postJsonApi(dataToSendCdn).then((response) => {
       setLoadingCdn(false);
+      setTipo(tipoNome)
       return response;
     });
     setDadosRecebidos(responseCdn);
+
+
   };
 
   return (
@@ -125,6 +140,8 @@ export default function ImportStepper({ json }) {
           loading={loadingCdn}
           formSubmitted={formSubmitted}
           response={dadosRecebidos}
+          tipo={tipo}
+
         />
       </Grid>
     </Card>
