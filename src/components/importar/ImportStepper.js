@@ -7,46 +7,40 @@ import ImportCdn from "./ImportCdn";
 import ImportUpload from "./ImportUpload";
 
 export default function ImportStepper({ json }) {
-
+  const [tipo, setTipo] = useState("");
   const [data, setData] = useState("");
-
-
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [stateCdn, setStateCdn] = useState({
-    const [loading, setLoading] = useState(false);
-    const [loadingCdn, setLoadingCdn] = useState(false);
-    const [tipo, setTipo] = useState('')
-  const [dadosRecebidos, setDadosRecebidos] = useState({
-      responseDiario: {
-        message: "",
-        pathFile: "",
-      },
-      responseInterno: {
-        message: "",
-        pathFile: "",
-      },
-      status: "idle",
-    });
-    const [stateDb, setStateDb] = useState({
-      response: {
-        message: "",
-        linhasAlteradas: "",
-      },
-      status: "idle",
-    });
+    responseDiario: {
+      message: "",
+      pathFile: "",
+    },
+    responseInterno: {
+      message: "",
+      pathFile: "",
+    },
+    status: "idle",
+  });
+  const [stateDb, setStateDb] = useState({
+    response: {
+      message: "",
+      linhasAlteradas: "",
+    },
+    status: "idle",
+  });
 
-    const getTipoNome = (linha) => {
-      switch (linha.tipo_notif) {
-        case "1":
-          return "AUTUACAO";
-        case "2":
-          return "PENALIDADE";
-        default:
-          return "ERRO";
-      }
-    };
+  const getTipoNome = (linha) => {
+    switch (linha.tipo_notif) {
+      case "1":
+        return "AUTUACAO";
+      case "2":
+        return "PENALIDADE";
+      default:
+        return "ERRO";
+    }
+  };
 
-    useEffect(() => {
+  useEffect(() => {
     const dataAtual = new Date().toJSON().slice(0, 10);
     const dataConvertida = moment(dataAtual).format("DD/MM/YYYY");
     setData(dataConvertida);
@@ -67,7 +61,6 @@ export default function ImportStepper({ json }) {
 
     const tipoNome = getTipoNome(json[0]);
 
-
     const dataToSendDb = {
       linhas: json,
       data,
@@ -78,13 +71,11 @@ export default function ImportStepper({ json }) {
       tipoNome,
     };
 
-
     postRelatorioDb(dataToSendDb, setStateDb).then(() => {
-      postJsonApi(dataToSendCdn, setStateCdn).then(res => {
-        setTipo(tipoNome)
+      postJsonApi(dataToSendCdn, setStateCdn).then((res) => {
+        setTipo(tipoNome);
       });
     });
-    setDadosRecebidos(responseCdn);
   };
 
   return (
@@ -102,7 +93,6 @@ export default function ImportStepper({ json }) {
           stateCdn={stateCdn}
           stateDb={stateDb}
           tipo={tipo}
-
         />
       </Grid>
     </Box>
