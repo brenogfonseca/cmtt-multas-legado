@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Acessar from "./components/Acessar";
 import Pagina404 from "./Pagina404"
 import ImportPenalidades from './CMTT/importPenalidades.js'
-import ImportAutuacao from './CMTT/importAutuacao.js'
+import {ImportAutuacao} from './CMTT/importAutuacao.js'
 import BuscaPlaca from './CMTT/BuscaPlaca.js'
 import BuscaDatas from './CMTT/BuscaDatas'
 import PrivateRoute from './services/PrivateRoute'
